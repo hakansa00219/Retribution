@@ -3,24 +3,20 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField]
-    private Player target;
+    private float _speed;
+    private Player _target;
+    public float Speed { get => _speed; set => _speed = value; }
 
-    [SerializeField] private float speed;
-    
-    public float Speed { get => speed; set => speed = value; }
-    
-    public Vector3 startPosition { get; set; }
-
-    private void Awake()
+    public void SetStats(Player player, float speed)
     {
-        startPosition = transform.position;
-    }
+        _target = player;
+        _speed = speed;
+    } 
 
     void FixedUpdate()
     {
-        if (target == null) return;
+        if (_target == null) return;
 
-        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, _speed * Time.deltaTime);
     }
 }
