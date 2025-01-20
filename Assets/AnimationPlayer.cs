@@ -16,7 +16,7 @@ public class AnimationPlayer : MonoBehaviour
     {
         await UniTask.Delay(TimeSpan.FromSeconds(delay), ignoreTimeScale: false);
         
-        timePause.PlayAnimationAndPauseTime();
+        // timePause.PlayAnimationAndPauseTime();
     }
 
 }
