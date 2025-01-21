@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 186135100}
   - component: {fileID: 186135099}
   m_Layer: 0
-  m_Name: Quad
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 219782601}
   - component: {fileID: 219782600}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Mini_Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -276,7 +276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 8645233611590393495, guid: 29e29efec7d074f409763ccfac60a5ee, type: 3}
   target: {fileID: 1035477088}
-  speed: 2
+  speed: 4
   spawnPosition: {fileID: 219782598}
 --- !u!23 &219782600
 MeshRenderer:
@@ -724,8 +724,9 @@ GameObject:
   - component: {fileID: 724943550}
   - component: {fileID: 724943553}
   - component: {fileID: 724943552}
+  - component: {fileID: 724943554}
   m_Layer: 6
-  m_Name: ParryArea
+  m_Name: DeflectArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -787,7 +788,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 724943548}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -833,6 +834,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 724943548}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &724943554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 724943548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8c164063e022e048bda8bcc878850e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 3
+  skillCooldown: 10
 --- !u!1 &805664647
 GameObject:
   m_ObjectHideFlags: 0
@@ -1036,7 +1051,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee16e698c00dbc74da2c5769bf6dfa7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilesInArea: []
+  deflect: {fileID: 724943554}
 --- !u!95 &1035477089
 Animator:
   serializedVersion: 7

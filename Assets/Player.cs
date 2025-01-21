@@ -5,33 +5,33 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Animator))]
 public class Player : MonoBehaviour
 {
     private PlayerInputActions _inputActions;
-    private Animator _playerAnimator;
    
     private readonly Vector2 _xPosLimits = new Vector2(-8.5f, 8.5f);
     private readonly Vector2 _zPosLimits = new Vector2(-5f, 4f);
     private readonly Vector2 _rotationLimits = new Vector2(-75f, 75f);
     private Vector2 _inputMovement;
     
-    private bool _parryAttackCooldown = false;
     private float _rotationSpeed;
     private float _currentYRotation;
-    public bool IsParryable { get; set; }
-    public List<Projectile> projectilesInArea = new List<Projectile>();
+    //
+    [SerializeField]
+    private Deflect deflect;
+    
+    public Deflect Deflect => deflect;
     
     private void Awake()
     {
         _inputActions = new PlayerInputActions();
-        _playerAnimator = GetComponent<Animator>();
+        Cursor.lockState = CursorLockMode.Locked;
     }
     
     private void OnEnable()
     {
         _inputActions.Enable();
-        _inputActions.Player.ParryAttack.performed += OnParryAttack;
+        _inputActions.Player.Deflect.performed += OnDeflect;
         _inputActions.Player.Move.performed += OnMove;
         _inputActions.Player.Move.canceled += OnMoveCanceled;
     }
@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
     private void OnDisable()
     {
         _inputActions.Disable();
-        _inputActions.Player.ParryAttack.performed -= OnParryAttack;
+        _inputActions.Player.Deflect.performed -= OnDeflect;
         _inputActions.Player.Move.performed -= OnMove;
         _inputActions.Player.Move.canceled -= OnMoveCanceled;
     }
@@ -91,32 +91,9 @@ public class Player : MonoBehaviour
         _inputMovement = Vector2.zero;
     }
 
-    private void OnParryAttack(InputAction.CallbackContext context)
+    private void OnDeflect(InputAction.CallbackContext context)
     {
-        if (!_parryAttackCooldown)
-        {
-            _parryAttackCooldown = true;
-            _playerAnimator.Play("Sword_Swing");
-            Task.Run(() => CooldownReset());
-        }
-        
-        if (!IsParryable) return;
-        
-        Debug.Log("Parried");
-        
-        foreach (var projectile in projectilesInArea)
-        {
-            projectile.Speed *= -1;
-
-            projectile.transform.localScale *= 1.2f;
-        }
-        
-    }
-
-    private async UniTaskVoid CooldownReset()
-    {
-        await UniTask.Delay(TimeSpan.FromSeconds(3), ignoreTimeScale: false);
-
-        _parryAttackCooldown = false;
+        deflect.Use();
     }
 }
+

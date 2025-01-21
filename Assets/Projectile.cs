@@ -1,22 +1,40 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Projectile : MonoBehaviour
 {
-    private float _speed;
+    [SerializeField] private Material deflectedMaterial;
+    [SerializeField] private Material material;
+    
     private Player _target;
-    public float Speed { get => _speed; set => _speed = value; }
+    private Vector3 _direction;
+    
+    public float Speed { get; set; }
+    public bool IsDeflected { get; set; }
+
+    private void Start()
+    {
+        if (_target == null) return;
+
+        _direction = _target.transform.position - transform.position;
+    }
 
     public void SetStats(Player player, float speed)
     {
         _target = player;
-        _speed = speed;
+        Speed = speed;
+    }
+
+    public void SetMaterialDeflected()
+    {
+        if(TryGetComponent(out Renderer rnd))
+            rnd.material = deflectedMaterial;
     } 
 
     void FixedUpdate()
     {
-        if (_target == null) return;
-
-        transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, _speed * Time.deltaTime);
+        Vector3 movement = _direction.normalized * (Speed * Time.deltaTime);
+        transform.Translate(movement, Space.World);
     }
 }

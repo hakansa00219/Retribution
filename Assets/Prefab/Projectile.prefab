@@ -101,8 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be8282649deb78346ab1c3462a18cf5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  speed: 5
+  deflectedMaterial: {fileID: 2100000, guid: 3d62cfa843c56d8458965823c9850361, type: 2}
+  material: {fileID: 2100000, guid: ec15a8f5b9c182f4ca169131d06b1ebe, type: 2}
 --- !u!54 &450690652694714271
 Rigidbody:
   m_ObjectHideFlags: 0
