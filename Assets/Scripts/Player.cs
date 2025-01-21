@@ -16,11 +16,13 @@ public class Player : MonoBehaviour
     
     private float _rotationSpeed;
     private float _currentYRotation;
+    
     //
     [SerializeField]
     private Deflect deflect;
     
     public Deflect Deflect => deflect;
+    [SerializeField] private int health;
     
     private void Awake()
     {
@@ -35,6 +37,8 @@ public class Player : MonoBehaviour
         _inputActions.Player.Move.performed += OnMove;
         _inputActions.Player.Move.canceled += OnMoveCanceled;
     }
+
+
 
     private void OnDisable()
     {
@@ -95,5 +99,18 @@ public class Player : MonoBehaviour
     {
         deflect.Use();
     }
+
+    public void OnHit(int dmg)
+    {
+        health -= dmg;
+        
+        //TODO: dmg effect hit effect or any effect sound
+
+        if (health <= 0)
+        {
+            Debug.LogError("Dead!");
+        }
+    }
+
 }
 

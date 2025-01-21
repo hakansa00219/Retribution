@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Renderer), typeof(Deflect))]
+[RequireComponent(typeof(Collider), typeof(Deflect))]
 public class DeflectTrigger : MonoBehaviour
 {
     [SerializeField] private Player owner;
@@ -16,8 +16,6 @@ public class DeflectTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("OnTriggerEnter");
-
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy Projectiles"))
         {
             OnProjectileTriggerEntered(other);   
@@ -26,10 +24,11 @@ public class DeflectTrigger : MonoBehaviour
 
     private void OnProjectileTriggerEntered(Collider other)
     {
-        if (!other.TryGetComponent<Projectile>(out var projectile))
-            return;
         // Is deflect skill active
         if (!owner.Deflect.IsActive)
+            return;
+        // Are you projectile? kinda
+        if (!other.TryGetComponent<Projectile>(out var projectile))
             return;
         // Is projectile already deflected one time.
         if (projectile.IsDeflected)

@@ -9,7 +9,8 @@ public class Projectile : MonoBehaviour
     
     private Player _target;
     private Vector3 _direction;
-    
+
+    public int BaseDamage { get; set; }
     public float Speed { get; set; }
     public bool IsDeflected { get; set; }
 
@@ -19,22 +20,33 @@ public class Projectile : MonoBehaviour
 
         _direction = _target.transform.position - transform.position;
     }
+    
+    private void FixedUpdate()
+    {
+        Vector3 movement = _direction.normalized * (Speed * Time.deltaTime);
+        transform.Translate(movement, Space.World);
+    }
 
-    public void SetStats(Player player, float speed)
+    public void SetStats(Player player, float speed, int baseDamage)
     {
         _target = player;
         Speed = speed;
+        BaseDamage = baseDamage;
     }
 
     public void SetMaterialDeflected()
     {
         if(TryGetComponent(out Renderer rnd))
             rnd.material = deflectedMaterial;
-    } 
-
-    void FixedUpdate()
-    {
-        Vector3 movement = _direction.normalized * (Speed * Time.deltaTime);
-        transform.Translate(movement, Space.World);
     }
+
+    public void Destroy()
+    {
+        //TODO:effect or animation for projectile destroying
+        
+        // ----
+        Destroy(gameObject);
+    }
+
+
 }

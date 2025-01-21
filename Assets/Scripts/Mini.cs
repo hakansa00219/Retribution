@@ -7,6 +7,7 @@ public class Mini : Enemy
 {
     [SerializeField] private Player target;
     [SerializeField] private float speed;
+    [SerializeField] private int projectileBaseDamage;
     [SerializeField] private Transform spawnPosition;
     protected override void MovementBehaviour()
     {
@@ -24,7 +25,7 @@ public class Mini : Enemy
         {
             await UniTask.SwitchToMainThread();
             Projectile projectile = Instantiate(projectilePrefab, spawnPosition.position, Quaternion.identity);
-            projectile.SetStats(target, speed);
+            projectile.SetStats(target, speed, projectileBaseDamage);
             await UniTask.DelayFrame(20);
         }
     }
