@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
-    [SerializeField] protected Projectile projectilePrefab;
+    [SerializeField] protected Projectile[] projectilePrefab;
     protected abstract void MovementBehaviour();
     protected abstract void ProjectileSpawningBehaviour();
 

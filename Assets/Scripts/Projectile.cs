@@ -6,20 +6,16 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] private Material deflectedMaterial;
     [SerializeField] private Material material;
-    
+
+    [SerializeField] private bool isDeflectable;
     private Player _target;
     private Vector3 _direction;
 
     public int BaseDamage { get; set; }
     public float Speed { get; set; }
     public bool IsDeflected { get; set; }
-
-    private void Start()
-    {
-        if (_target == null) return;
-
-        _direction = _target.transform.position - transform.position;
-    }
+    
+    public bool IsDeflectable => isDeflectable;
     
     private void FixedUpdate()
     {
@@ -27,9 +23,9 @@ public class Projectile : MonoBehaviour
         transform.Translate(movement, Space.World);
     }
 
-    public void SetStats(Player player, float speed, int baseDamage)
+    public void SetStats(Vector3 direction, float speed, int baseDamage)
     {
-        _target = player;
+        _direction = direction;
         Speed = speed;
         BaseDamage = baseDamage;
     }

@@ -30,6 +30,9 @@ public class DeflectTrigger : MonoBehaviour
         // Are you projectile? kinda
         if (!other.TryGetComponent<Projectile>(out var projectile))
             return;
+        // Is deflactable projectile? as type of projectile
+        if (!projectile.IsDeflectable)
+            return;
         // Is projectile already deflected one time.
         if (projectile.IsDeflected)
             return;
