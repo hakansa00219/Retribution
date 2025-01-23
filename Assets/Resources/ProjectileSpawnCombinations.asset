@@ -12,9 +12,143 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9655e7944a844f63a913248c419c2e3f, type: 3}
   m_Name: ProjectileSpawnCombinations
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   combinations:
-  - skillName: Straight_Left
-    enemyType: 0
+  - skillName: Big_Bombs
+    enemyType: 2
+    offsetSpawnPosition: {x: 0, y: 0, z: -0.2}
+    DelayFrameEachSpawn: 20
+    SpawnedData:
+    - Projectiles:
+      - Speed: 4
+        Direction: {x: 1, y: 0, z: -1}
+      - Speed: 4
+        Direction: {x: 0.6, y: 0, z: -1}
+      - Speed: 5
+        Direction: {x: 0.8, y: 0, z: 0}
+      - Speed: 3
+        Direction: {x: 0.8, y: 0, z: 0}
+    - Projectiles:
+      - Speed: 4
+        Direction: {x: -1, y: 0, z: -1}
+      - Speed: 4
+        Direction: {x: -0.6, y: 0, z: -1}
+      - Speed: 5
+        Direction: {x: -0.8, y: 0, z: -1}
+      - Speed: 3
+        Direction: {x: -0.8, y: 0, z: -1}
+    - Projectiles:
+      - Speed: 4
+        Direction: {x: 1, y: 0, z: -1}
+      - Speed: 4
+        Direction: {x: 0.6, y: 0, z: -1}
+      - Speed: 5
+        Direction: {x: 0.8, y: 0, z: -1}
+      - Speed: 3
+        Direction: {x: 0.8, y: 0, z: -1}
+    - Projectiles:
+      - Speed: 4
+        Direction: {x: -0.2, y: 0, z: -1}
+      - Speed: 4
+        Direction: {x: 0.2, y: 0, z: -1}
+      - Speed: 5
+        Direction: {x: 0, y: 0, z: -1}
+      - Speed: 3
+        Direction: {x: 0, y: 0, z: -1}
+    - Projectiles:
+      - Speed: 4
+        Direction: {x: -0.4, y: 0, z: -1}
+      - Speed: 4
+        Direction: {x: 0, y: 0, z: -1}
+      - Speed: 5
+        Direction: {x: -0.2, y: 0, z: -1}
+      - Speed: 3
+        Direction: {x: -0.2, y: 0, z: -1}
+    - Projectiles:
+      - Speed: 4
+        Direction: {x: 0.4, y: 0, z: -1}
+      - Speed: 4
+        Direction: {x: 0, y: 0, z: -1}
+      - Speed: 5
+        Direction: {x: 0.2, y: 0, z: -1}
+      - Speed: 3
+        Direction: {x: 0.2, y: 0, z: -1}
+    - Projectiles:
+      - Speed: 4
+        Direction: {x: -0.2, y: 0, z: -1}
+      - Speed: 4
+        Direction: {x: 0.2, y: 0, z: -1}
+      - Speed: 5
+        Direction: {x: 0, y: 0, z: -1}
+      - Speed: 3
+        Direction: {x: 0, y: 0, z: -1}
+    - Projectiles:
+      - Speed: 4
+        Direction: {x: -0.2, y: 0, z: -1}
+      - Speed: 4
+        Direction: {x: 0.2, y: 0, z: -1}
+      - Speed: 5
+        Direction: {x: 0, y: 0, z: -1}
+      - Speed: 3
+        Direction: {x: 0, y: 0, z: -1}
+    - Projectiles:
+      - Speed: 4
+        Direction: {x: 1, y: 0, z: -1}
+      - Speed: 4
+        Direction: {x: 0.6, y: 0, z: -1}
+      - Speed: 5
+        Direction: {x: 0.8, y: 0, z: -1}
+      - Speed: 3
+        Direction: {x: 0.8, y: 0, z: -1}
+    - Projectiles:
+      - Speed: 4
+        Direction: {x: 1, y: 0, z: -1}
+      - Speed: 4
+        Direction: {x: 0.6, y: 0, z: -1}
+      - Speed: 5
+        Direction: {x: 0.8, y: 0, z: -1}
+      - Speed: 3
+        Direction: {x: 0.8, y: 0, z: -1}
+  - skillName: Mid_Big_Circle_Shot
+    enemyType: 1
+    offsetSpawnPosition: {x: 0, y: 0, z: -0.2}
+    DelayFrameEachSpawn: 0
+    SpawnedData:
+    - Projectiles:
+      - Speed: 6
+        Direction: {x: 0, y: 0, z: -1}
+      - Speed: 5.5
+        Direction: {x: 0.25, y: 0, z: -1}
+      - Speed: 5.5
+        Direction: {x: -0.25, y: 0, z: -1}
+      - Speed: 5
+        Direction: {x: 0.5, y: 0, z: -1}
+      - Speed: 5
+        Direction: {x: -0.5, y: 0, z: -1}
+      - Speed: 4.5
+        Direction: {x: 0.75, y: 0, z: -1}
+      - Speed: 4.5
+        Direction: {x: -0.75, y: 0, z: -1}
+      - Speed: 4
+        Direction: {x: 0.5, y: 0, z: -1}
+      - Speed: 4
+        Direction: {x: -0.5, y: 0, z: -1}
+      - Speed: 3.5
+        Direction: {x: 0.25, y: 0, z: -1}
+      - Speed: 3.5
+        Direction: {x: -0.25, y: 0, z: -1}
+      - Speed: 3
+        Direction: {x: 0, y: 0, z: -1}
+  - skillName: Mid_Straight_Right
+    enemyType: 1
     offsetSpawnPosition: {x: 0, y: 0, z: -0.2}
     DelayFrameEachSpawn: 10
     SpawnedData:
@@ -51,3 +185,113 @@ MonoBehaviour:
     - Projectiles:
       - Speed: 4
         Direction: {x: -1, y: 0, z: -1}
+  - skillName: Mid_Straight_Left
+    enemyType: 1
+    offsetSpawnPosition: {x: 0, y: 0, z: -0.2}
+    DelayFrameEachSpawn: 10
+    SpawnedData:
+    - Projectiles:
+      - Speed: 4
+        Direction: {x: -1, y: 0, z: -1}
+    - Projectiles:
+      - Speed: 4
+        Direction: {x: -0.8, y: 0, z: -1}
+    - Projectiles:
+      - Speed: 4
+        Direction: {x: -0.6, y: 0, z: -1}
+    - Projectiles:
+      - Speed: 4
+        Direction: {x: -0.4, y: 0, z: -1}
+    - Projectiles:
+      - Speed: 4
+        Direction: {x: -0.2, y: 0, z: -1}
+    - Projectiles:
+      - Speed: 4
+        Direction: {x: 0, y: 0, z: -1}
+    - Projectiles:
+      - Speed: 4
+        Direction: {x: 0.2, y: 0, z: -1}
+    - Projectiles:
+      - Speed: 4
+        Direction: {x: 0.4, y: 0, z: -1}
+    - Projectiles:
+      - Speed: 4
+        Direction: {x: 0.6, y: 0, z: -1}
+    - Projectiles:
+      - Speed: 4
+        Direction: {x: 0.8, y: 0, z: -1}
+    - Projectiles:
+      - Speed: 4
+        Direction: {x: 1, y: 0, z: -1}
+  - skillName: Mini_Triple_Shot
+    enemyType: 0
+    offsetSpawnPosition: {x: 0, y: 0, z: -0.2}
+    DelayFrameEachSpawn: 0
+    SpawnedData:
+    - Projectiles:
+      - Speed: 4
+        Direction: {x: 0.3, y: 0, z: -1}
+      - Speed: 4
+        Direction: {x: 0, y: 0, z: -1}
+      - Speed: 4
+        Direction: {x: -0.3, y: 0, z: -1}
+  - skillName: Mini_Quad_Shot
+    enemyType: 0
+    offsetSpawnPosition: {x: 0, y: 0, z: -0.2}
+    DelayFrameEachSpawn: 0
+    SpawnedData:
+    - Projectiles:
+      - Speed: 4
+        Direction: {x: 0.5, y: 0, z: -1}
+      - Speed: 4
+        Direction: {x: 0.25, y: 0, z: -1}
+      - Speed: 4
+        Direction: {x: 0, y: 0, z: -1}
+      - Speed: 4
+        Direction: {x: -0.25, y: 0, z: -1}
+      - Speed: 4
+        Direction: {x: -0.5, y: 0, z: -1}
+  - skillName: Mini_Circle_Shot
+    enemyType: 0
+    offsetSpawnPosition: {x: 0, y: 0, z: -0.2}
+    DelayFrameEachSpawn: 0
+    SpawnedData:
+    - Projectiles:
+      - Speed: 5
+        Direction: {x: 0, y: 0, z: -1}
+      - Speed: 4
+        Direction: {x: -0.2, y: 0, z: -1}
+      - Speed: 4
+        Direction: {x: 0.2, y: 0, z: -1}
+      - Speed: 3
+        Direction: {x: 0, y: 0, z: -1}
+  - skillName: Mini_Triple_Gatling
+    enemyType: 0
+    offsetSpawnPosition: {x: 0, y: 0, z: -0.2}
+    DelayFrameEachSpawn: 10
+    SpawnedData:
+    - Projectiles:
+      - Speed: 5
+        Direction: {x: 0, y: 0, z: -1}
+    - Projectiles:
+      - Speed: 5
+        Direction: {x: 0, y: 0, z: -1}
+    - Projectiles:
+      - Speed: 5
+        Direction: {x: 0, y: 0, z: -1}
+  - skillName: Mini_One_Shot_Random_Direction
+    enemyType: 0
+    offsetSpawnPosition: {x: 0, y: 0, z: -0.2}
+    DelayFrameEachSpawn: 10
+    SpawnedData:
+    - Projectiles:
+      - Speed: 3
+        Direction: {x: 0, y: 0, z: -1}
+  - skillName: Mini_One_Shot
+    enemyType: 0
+    offsetSpawnPosition: {x: 0, y: 0, z: -0.2}
+    DelayFrameEachSpawn: 0
+    SpawnedData:
+    - Projectiles:
+      - Speed: 4
+        Direction: {x: 0, y: 0, z: -1}

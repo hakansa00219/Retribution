@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ProjectileSpawnCombinations", menuName = "Scriptable Objects/Projectile Spawn Combinations")]
-public class ProjectileSpawnCombinations : ScriptableObject
+public class ProjectileSpawnCombinations : SerializedScriptableObject
 {
     public List<CombinedData> combinations = new List<CombinedData>();
 

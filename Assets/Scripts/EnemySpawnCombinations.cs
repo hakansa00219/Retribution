@@ -24,8 +24,8 @@ public class EnemySpawnCombinations : ScriptableObject
     {
         public EnemyType EnemyType;
         public Vector3 AfterSpawnPosition;
-        //public MovementBehaviour MovementBehaviour;
-        //public ProjectileSpawnCombinations.CombinedData ProjectileSpawnCombination;
+        public string MovementBehaviour;
+        public string ProjectileSpawnCombination;
     }
 
     

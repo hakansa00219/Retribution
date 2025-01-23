@@ -20,7 +20,7 @@ public class Mini : Enemy
     {
         _combinations = Resources.Load<ProjectileSpawnCombinations>("ProjectileSpawnCombinations");
         
-        _selectedCombination = _combinations.combinations[Random.Range(0, _combinations.combinations.Count)];
+        _selectedCombination = _combinations.combinations[7];
     }
 
     protected override void MovementBehaviour()
