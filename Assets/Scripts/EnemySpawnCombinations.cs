@@ -1,17 +1,20 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "Scriptable Objects/Enemy Spawn Combinations", fileName = "Enemy Spawn Combinations")]
 public class EnemySpawnCombinations : ScriptableObject
 {
 
     public Level[] Levels;
 
+    [Serializable]
     public struct Level
     {
         // 3 level if enough time
         public Turn[] Turns;
     }
-    
+    [Serializable]
     public struct Turn
     {
         // 5 turns
@@ -20,6 +23,7 @@ public class EnemySpawnCombinations : ScriptableObject
         public Mob[] Enemies;
     }
 
+    [Serializable]
     public struct Mob
     {
         public EnemyType EnemyType;

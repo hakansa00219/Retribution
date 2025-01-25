@@ -36,6 +36,7 @@ public class DeflectTrigger : MonoBehaviour
         // Is projectile already deflected one time.
         if (projectile.IsDeflected)
             return;
+        projectile.gameObject.layer = LayerMask.NameToLayer("Deflected Projectiles");
         _deflectSkill.OnDeflect(projectile);
     }
     

@@ -11,6 +11,11 @@ public class CharacterTrigger : MonoBehaviour
         {
             OnProjectileTriggerEntered(other);   
         }
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            OnSwordCollidedWithEnemy(other);
+        }
     }
 
     private void OnProjectileTriggerEntered(Collider other)
@@ -26,5 +31,14 @@ public class CharacterTrigger : MonoBehaviour
         // Destroy
         projectile.Destroy();
 
+    }
+
+    private void OnSwordCollidedWithEnemy(Collider other)
+    {
+        // Are you enemy?
+        if (!other.TryGetComponent<Enemy>(out var enemy))
+            return;
+        // Damage
+        enemy.OnDamaged(1);
     }
 }

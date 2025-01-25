@@ -103,6 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deflectedMaterial: {fileID: 2100000, guid: 3d62cfa843c56d8458965823c9850361, type: 2}
   material: {fileID: 2100000, guid: ec15a8f5b9c182f4ca169131d06b1ebe, type: 2}
+  isDeflectable: 0
 --- !u!54 &450690652694714271
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -140,10 +141,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 320
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 183
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0

@@ -1,37 +1,53 @@
 using System;
+using System.Linq;
 using System.Numerics;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Quaternion = UnityEngine.Quaternion;
 using Random = UnityEngine.Random;
 using Task = System.Threading.Tasks.Task;
+using Vector3 = UnityEngine.Vector3;
 
 public class Mini : Enemy
 {
     [SerializeField] private Player target;
     [SerializeField] private float speed;
     [SerializeField] private int projectileBaseDamage;
-    [SerializeField] private Transform spawnPosition;
-
-    private ProjectileSpawnCombinations _combinations;
+    private Vector3 _afterSpawnPosition;
     private ProjectileSpawnCombinations.CombinedData _selectedCombination;
+
+    private void Start()
+    {
+        Task.Run(AI);
+    }
+
+    private async UniTaskVoid AI()
+    {
+        await Task.Run(MoveInitialPosition);
+        await UniTask.Delay(TimeSpan.FromSeconds(2));
+        await UniTask.WhenAll(ProjectileSpawningBehaviour(), MovementBehaviour());
+    }
+
+    protected override void SetProjectileSpawnCombination()
+    {
+        _selectedCombination = ProjectileCombinations.combinations.Find((x) => x.skillName == EnemyDetails.ProjectileSpawnCombination);
+    }
+    protected override async UniTaskVoid MoveInitialPosition()
+    {
+        // Lerp to the position in the data
+        await UniTask.SwitchToMainThread();
+        await MovementHelper.MoveTransformAsync(transform, EnemyDetails.AfterSpawnPosition, InitialDuration);
+    }
     
-    private void Awake()
+    protected override async UniTask MovementBehaviour()
     {
-        _combinations = Resources.Load<ProjectileSpawnCombinations>("ProjectileSpawnCombinations");
-        
-        _selectedCombination = _combinations.combinations[7];
+        await UniTask.Delay(TimeSpan.FromSeconds(2));
     }
 
-    protected override void MovementBehaviour()
-    {
-        // throw new System.NotImplementedException();
-    }
-
-    protected override void ProjectileSpawningBehaviour()
+    protected override async UniTask ProjectileSpawningBehaviour()
     {
         //TODO: Before spawning maybe some visible effect that you know enemy attacking.
-        Task.Run(SpawnProjectiles);
+        await Task.Run(SpawnProjectiles);
     }
 
     private async UniTaskVoid SpawnProjectiles()
