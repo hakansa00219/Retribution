@@ -11,7 +11,7 @@ public class EnemySpawner : SerializedMonoBehaviour
 {
     [SerializeField] private Vector3 enemyInitSpawnPosition;
     [OdinSerialize, SerializeField]
-    private Dictionary<EnemyType, Enemy> _enemies = new Dictionary<EnemyType, Enemy>();
+    private Dictionary<EnemyType, GameObject> _enemies = new Dictionary<EnemyType, GameObject>();
     
     private List<GameObject> _spawnedEnemies = new List<GameObject>();
     private EnemySpawnCombinations _combinations;
@@ -23,7 +23,7 @@ public class EnemySpawner : SerializedMonoBehaviour
         Task.Run(StartLevelSpawning);
     }
 
-    public async UniTaskVoid StartLevelSpawning()
+    private async UniTaskVoid StartLevelSpawning()
     {
         //Started
         await UniTask.Delay(TimeSpan.FromSeconds(3));
@@ -34,7 +34,7 @@ public class EnemySpawner : SerializedMonoBehaviour
             {
                 foreach (var enemy in turn.Enemies)
                 {
-                    Enemy enemyObj = enemy.EnemyType switch
+                    GameObject enemyObj = enemy.EnemyType switch
                     {
                         EnemyType.Mini => Instantiate(_enemies[EnemyType.Mini], enemyInitSpawnPosition,
                             Quaternion.identity),
@@ -44,7 +44,12 @@ public class EnemySpawner : SerializedMonoBehaviour
                             Quaternion.identity),
                         _ => throw new ArgumentOutOfRangeException()
                     };
-                    enemyObj.Initialize(enemy);
+                    if (!enemyObj.TryGetComponent(out Enemy e))
+                    {
+                        Debug.LogError("Enemy not found");
+                        return;
+                    }
+                    e.Initialize(enemy, _spawnedEnemies);
                     _spawnedEnemies.Add(enemyObj.gameObject);
                 }
                 

@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 using Task = System.Threading.Tasks.Task;
 using Vector3 = UnityEngine.Vector3;
 
-public class Mini : Enemy
+public class Mid : Enemy
 {
     [SerializeField] private float speed;
     [SerializeField] private int projectileBaseDamage;

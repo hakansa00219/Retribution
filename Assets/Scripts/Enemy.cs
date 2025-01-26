@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -6,9 +7,12 @@ public abstract class Enemy : MonoBehaviour
 {
     [SerializeField] protected int health;
     [SerializeField] protected Projectile[] projectilePrefab;
+
+    private List<GameObject> _spawnedEnemies;
+    
     protected ProjectileSpawnCombinations ProjectileCombinations;
     protected EnemySpawnCombinations.Mob EnemyDetails;
-    protected readonly float InitialDuration = 1f;
+    protected const float InitialDuration = 1f;
     protected abstract UniTask MovementBehaviour();
     protected abstract UniTask ProjectileSpawningBehaviour();
     protected abstract void SetProjectileSpawnCombination();
@@ -18,9 +22,10 @@ public abstract class Enemy : MonoBehaviour
         ProjectileCombinations = Resources.Load<ProjectileSpawnCombinations>("ProjectileSpawnCombinations");
     }
 
-    public void Initialize(EnemySpawnCombinations.Mob enemyDetails)
+    public void Initialize(EnemySpawnCombinations.Mob enemyDetails, List<GameObject> spawnedEnemies)
     {
         EnemyDetails = enemyDetails;
+        _spawnedEnemies = spawnedEnemies;
         
         SetProjectileSpawnCombination();
     }
@@ -33,6 +38,7 @@ public abstract class Enemy : MonoBehaviour
         {
             //TODO: or some effect
             Destroy(gameObject);
+            _spawnedEnemies.Remove(gameObject);
         }
     }
     

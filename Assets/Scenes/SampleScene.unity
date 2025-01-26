@@ -1227,9 +1227,9 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 2974163019304220536, guid: d803275b70138c345a6cd6eeb607fc46, type: 3}
-    - {fileID: 2974163019304220536, guid: 69ae417e672f82c4c9f8b79cdf758234, type: 3}
-    - {fileID: 2974163019304220536, guid: 03569d7d7b682344aa89ea7ea258b1de, type: 3}
+    - {fileID: 251676378819080928, guid: d803275b70138c345a6cd6eeb607fc46, type: 3}
+    - {fileID: 251676378819080928, guid: 69ae417e672f82c4c9f8b79cdf758234, type: 3}
+    - {fileID: 251676378819080928, guid: 03569d7d7b682344aa89ea7ea258b1de, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -1237,8 +1237,8 @@ MonoBehaviour:
     SerializationNodes:
     - Name: _enemies
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[EnemyType, Assembly-CSharp],[Enemy,
-        Assembly-CSharp]], mscorlib
+      Data: 0|System.Collections.Generic.Dictionary`2[[EnemyType, Assembly-CSharp],[UnityEngine.GameObject,
+        UnityEngine.CoreModule]], mscorlib
     - Name: comparer
       Entry: 7
       Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[EnemyType, Assembly-CSharp]],
