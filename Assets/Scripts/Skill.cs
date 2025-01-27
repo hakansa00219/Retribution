@@ -28,7 +28,7 @@ public abstract class Skill : MonoBehaviour
         
         ActiveSkillEffect();
         IsSkillCastable = false;
-        Task.Run(Cooldown);
+        Cooldown();
     }
 
     protected abstract void ActiveSkillEffect();

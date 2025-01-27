@@ -17,6 +17,6 @@ public class Deflect : Skill, IDeflector
         IsActive = true;
         Renderer.enabled = true;
         Debug.Log("Skill activated!");
-        Task.Run(ChangeBackStatus);
+        ChangeBackStatus();
     }
 }

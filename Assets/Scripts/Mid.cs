@@ -15,12 +15,12 @@ public class Mid : Enemy
 
     private void Start()
     {
-        Task.Run(AI);
+        AI();
     }
 
     private async UniTaskVoid AI()
     {
-        await Task.Run(MoveInitialPosition);
+        await UniTask.WhenAll(MoveInitialPosition());
         await UniTask.Delay(TimeSpan.FromSeconds(2));
         await UniTask.WhenAll(ProjectileSpawningBehaviour(), MovementBehaviour());
     }
@@ -29,7 +29,7 @@ public class Mid : Enemy
     {
         _selectedCombination = ProjectileCombinations.combinations.Find((x) => x.skillName == EnemyDetails.ProjectileSpawnCombination);
     }
-    protected override async UniTaskVoid MoveInitialPosition()
+    protected override async UniTask MoveInitialPosition()
     {
         // Lerp to the position in the data
         await UniTask.SwitchToMainThread();
@@ -44,10 +44,10 @@ public class Mid : Enemy
     protected override async UniTask ProjectileSpawningBehaviour()
     {
         //TODO: Before spawning maybe some visible effect that you know enemy attacking.
-        await Task.Run(SpawnProjectiles);
+        await UniTask.WhenAll(SpawnProjectiles());
     }
 
-    private async UniTaskVoid SpawnProjectiles()
+    private async UniTask SpawnProjectiles()
     {
         for (int i = 0; i < _selectedCombination.SpawnedData.Length; i++)
         {

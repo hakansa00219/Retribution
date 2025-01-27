@@ -18,16 +18,22 @@ public class EnemySpawner : SerializedMonoBehaviour
     
     private void Awake()
     {
+        Debug.Log("A1");
         _combinations = Resources.Load<EnemySpawnCombinations>("Enemy Spawn Combinations");
-
-        Task.Run(StartLevelSpawning);
+        Debug.Log("A2");
+        UniTask.SwitchToMainThread();
+        Debug.Log("A21");
+        StartLevelSpawning();
     }
 
     private async UniTaskVoid StartLevelSpawning()
     {
         //Started
+        Debug.Log("A3");
         await UniTask.Delay(TimeSpan.FromSeconds(3));
+        Debug.Log("A4");
         await UniTask.SwitchToMainThread();
+        Debug.Log("A5");
         foreach (var level in _combinations.Levels)
         {
             foreach (var turn in level.Turns)
@@ -52,9 +58,9 @@ public class EnemySpawner : SerializedMonoBehaviour
                     e.Initialize(enemy, _spawnedEnemies);
                     _spawnedEnemies.Add(enemyObj.gameObject);
                 }
-                
+                Debug.Log("A6");
                 await UniTask.WaitUntil(() => _spawnedEnemies.Count == 0);
-                
+                Debug.Log("A7");
                 _spawnedEnemies.Clear();
             }
         }

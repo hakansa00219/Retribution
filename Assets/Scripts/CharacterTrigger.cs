@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
@@ -38,7 +39,11 @@ public class CharacterTrigger : MonoBehaviour
         // Are you enemy?
         if (!other.TryGetComponent<Enemy>(out var enemy))
             return;
+
+        if (enemy.IsDamagedRecently)
+            return;
         // Damage
         enemy.OnDamaged(1);
     }
+
 }

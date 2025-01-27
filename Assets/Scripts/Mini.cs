@@ -15,25 +15,33 @@ public class Mini : Enemy
 
     private void Start()
     {
-        Task.Run(AI);
+        AI();
+        Debug.Log("B2");
     }
 
     private async UniTaskVoid AI()
     {
-        await Task.Run(MoveInitialPosition);
+        Debug.Log("B3");
+        await UniTask.WhenAll(MoveInitialPosition());
+        Debug.Log("B4");
         await UniTask.Delay(TimeSpan.FromSeconds(2));
+        Debug.Log("B5");
         await UniTask.WhenAll(ProjectileSpawningBehaviour(), MovementBehaviour());
+        Debug.Log("B6");
     }
 
     protected override void SetProjectileSpawnCombination()
     {
         _selectedCombination = ProjectileCombinations.combinations.Find((x) => x.skillName == EnemyDetails.ProjectileSpawnCombination);
     }
-    protected override async UniTaskVoid MoveInitialPosition()
+    protected override async UniTask MoveInitialPosition()
     {
         // Lerp to the position in the data
+        Debug.Log("B8");
         await UniTask.SwitchToMainThread();
+        Debug.Log("B9");
         await MovementHelper.MoveTransformAsync(transform, EnemyDetails.AfterSpawnPosition, InitialDuration);
+        Debug.Log("B10");
     }
     
     protected override async UniTask MovementBehaviour()
@@ -44,10 +52,12 @@ public class Mini : Enemy
     protected override async UniTask ProjectileSpawningBehaviour()
     {
         //TODO: Before spawning maybe some visible effect that you know enemy attacking.
-        await Task.Run(SpawnProjectiles);
+        Debug.Log("B7");
+        await UniTask.WhenAll(SpawnProjectiles());
+        Debug.Log("B11");
     }
 
-    private async UniTaskVoid SpawnProjectiles()
+    private async UniTask SpawnProjectiles()
     {
         for (int i = 0; i < _selectedCombination.SpawnedData.Length; i++)
         {

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -16,13 +17,15 @@ public class Player : MonoBehaviour
     
     private float _rotationSpeed;
     private float _currentYRotation;
-    
+    public bool IsDead { get; private set; }
+
     //
     [SerializeField]
     private Deflect deflect;
     
     public Deflect Deflect => deflect;
     [SerializeField] private int health;
+    [SerializeField] private GameObject restartPanel;
     
     private void Awake()
     {
@@ -109,8 +112,9 @@ public class Player : MonoBehaviour
         if (health <= 0)
         {
             Debug.LogError("Dead!");
+            IsDead = true;
+            restartPanel.SetActive(true);
         }
     }
-
 }
 
