@@ -12,10 +12,40 @@ public class Big : Enemy
     [SerializeField] private int projectileBaseDamage;
     private Vector3 _afterSpawnPosition;
     private ProjectileSpawnCombinations.CombinedData _selectedCombination;
-
+    private CamType _currentCamType;
+    
     private void Start()
     {
+        CameraAnimationPlayer.Instance.CameraChanged += OnCameraChanged;
+        _currentCamType = CameraAnimationPlayer.Instance.CamType;
         AI();
+    }
+
+    private void OnCameraChanged(CamType camType)
+    {
+        if (_currentCamType == camType)
+            return;
+        
+        _currentCamType = camType;
+
+        if (camType == CamType.Side)
+        {
+            ChangePosition();
+        }
+    }
+
+    private void ChangePosition()
+    {
+        MovementHelper.MoveTransformAsyncUnscaled(transform,
+            new Vector3(0f, 
+                transform.position.y + EnemyDetails.AfterSpawnPosition.x,
+                EnemyDetails.AfterSpawnPosition.z + 4f),
+            1f);
+    }
+    
+    private void OnDisable()
+    {
+        CameraAnimationPlayer.Instance.CameraChanged -= OnCameraChanged;
     }
 
     private async UniTaskVoid AI()
@@ -33,7 +63,14 @@ public class Big : Enemy
     {
         // Lerp to the position in the data
         await UniTask.SwitchToMainThread();
-        await MovementHelper.MoveTransformAsync(transform, EnemyDetails.AfterSpawnPosition, InitialDuration);
+        if (_currentCamType == CamType.Side)
+            await MovementHelper.MoveTransformAsyncUnscaled(transform,
+                new Vector3(0f, 
+                    transform.position.y + EnemyDetails.AfterSpawnPosition.x,
+                    EnemyDetails.AfterSpawnPosition.z + 4f),
+                1f);
+        else
+            await MovementHelper.MoveTransformAsync(transform, EnemyDetails.AfterSpawnPosition, InitialDuration);
     }
     
     protected override async UniTask MovementBehaviour()
