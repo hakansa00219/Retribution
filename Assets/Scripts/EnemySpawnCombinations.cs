@@ -21,6 +21,7 @@ public class EnemySpawnCombinations : ScriptableObject
         // Each turn 10 mobs
         // All turns fixed.
         public Mob[] Enemies;
+        public CamType CamType;
     }
 
     [Serializable]

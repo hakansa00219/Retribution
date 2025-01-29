@@ -40,6 +40,9 @@ public class CharacterTrigger : MonoBehaviour
         if (!other.TryGetComponent<Enemy>(out var enemy))
             return;
 
+        if (enemy.IsImmune)
+            return;
+
         if (enemy.IsDamagedRecently)
             return;
         // Damage

@@ -5,6 +5,9 @@ public static class MovementHelper
 {
     public static async UniTask MoveTransformAsync(Transform transform, Vector3 targetPosition, float time)
     {
+        if (transform == null)
+            return;
+        
         Vector3 initialPosition = transform.position;
         float elapsedTime = 0f;
 
@@ -13,6 +16,8 @@ public static class MovementHelper
             // Calculate interpolation factor (0 to 1)
             float t = elapsedTime / time;
             
+            if (transform == null)
+                return;
             // Update position with smooth interpolation
             transform.position = Vector3.Lerp(initialPosition, targetPosition, t);
             
@@ -26,6 +31,9 @@ public static class MovementHelper
     }
     public static async UniTask MoveTransformAsyncUnscaled(Transform transform, Vector3 targetPosition, float time)
     {
+        if (transform == null)
+            return;
+        
         Vector3 initialPosition = transform.position;
         float elapsedTime = 0f;
 
@@ -33,7 +41,9 @@ public static class MovementHelper
         {
             // Calculate interpolation factor (0 to 1)
             float t = elapsedTime / time;
-            
+
+            if (transform == null)
+                return;
             // Update position with smooth interpolation
             transform.position = Vector3.Lerp(initialPosition, targetPosition, t);
             

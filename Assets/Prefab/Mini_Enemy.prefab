@@ -116,8 +116,9 @@ MonoBehaviour:
   - {fileID: 8645233611590393495, guid: a65eb6a3b13d0834eac22c961782861e, type: 3}
   - {fileID: 8645233611590393495, guid: 29e29efec7d074f409763ccfac60a5ee, type: 3}
   IsDamagedRecently: 0
+  IsImmune: 1
   speed: 4
-  projectileBaseDamage: 1
+  projectileBaseDamage: 0
 --- !u!1 &3664212580273375308
 GameObject:
   m_ObjectHideFlags: 0

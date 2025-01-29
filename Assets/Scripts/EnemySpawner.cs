@@ -15,29 +15,27 @@ public class EnemySpawner : SerializedMonoBehaviour
     
     private List<GameObject> _spawnedEnemies = new List<GameObject>();
     private EnemySpawnCombinations _combinations;
+
+    public event Action<int> TurnChanged;
     
     private void Awake()
     {
-        Debug.Log("A1");
         _combinations = Resources.Load<EnemySpawnCombinations>("Enemy Spawn Combinations");
-        Debug.Log("A2");
         UniTask.SwitchToMainThread();
-        Debug.Log("A21");
         StartLevelSpawning();
     }
 
     private async UniTaskVoid StartLevelSpawning()
     {
         //Started
-        Debug.Log("A3");
         await UniTask.Delay(TimeSpan.FromSeconds(3));
-        Debug.Log("A4");
         await UniTask.SwitchToMainThread();
-        Debug.Log("A5");
         foreach (var level in _combinations.Levels)
         {
-            foreach (var turn in level.Turns)
+            for (var index = 0; index < level.Turns.Length; index++)
             {
+                var turn = level.Turns[index];
+                TurnChanged?.Invoke(index);
                 foreach (var enemy in turn.Enemies)
                 {
                     GameObject enemyObj = enemy.EnemyType switch
@@ -55,13 +53,14 @@ public class EnemySpawner : SerializedMonoBehaviour
                         Debug.LogError("Enemy not found");
                         return;
                     }
+
                     e.Initialize(enemy, _spawnedEnemies);
                     _spawnedEnemies.Add(enemyObj.gameObject);
                 }
-                Debug.Log("A6");
+
                 await UniTask.WaitUntil(() => _spawnedEnemies.Count == 0);
-                Debug.Log("A7");
                 _spawnedEnemies.Clear();
+                
             }
         }
     }

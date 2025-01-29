@@ -16,6 +16,8 @@ public class EnemyTrigger : MonoBehaviour
     {
         if (!other.TryGetComponent(out Projectile projectile))
             return;
+        if (owner.IsImmune)
+            return;
         if (!projectile.IsDeflectable)
             return;
         if (!projectile.IsDeflected)

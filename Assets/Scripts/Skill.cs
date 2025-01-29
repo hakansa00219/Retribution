@@ -10,6 +10,9 @@ public abstract class Skill : MonoBehaviour
     [SerializeField] private float skillCooldown;
     private bool IsSkillCastable { get; set; } = true;
     public bool IsActive { get; protected set; }
+    public float SkillCooldown => skillCooldown;
+
+    public event Action<float> SkillCast;
     protected Renderer Renderer { get; private set; }
 
     protected void Awake()
@@ -25,7 +28,7 @@ public abstract class Skill : MonoBehaviour
             Debug.LogError("Skill is on cooldown!");
             return;
         }
-        
+        SkillCast?.Invoke(skillCooldown);
         ActiveSkillEffect();
         IsSkillCastable = false;
         Cooldown();

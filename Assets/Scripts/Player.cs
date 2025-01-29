@@ -40,6 +40,8 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject restartPanel;
 
     private CamType _camType;
+
+    public event Action<int> HealthDropped;
     
     private void Awake()
     {
@@ -170,15 +172,16 @@ public class Player : MonoBehaviour
     public void OnHit(int dmg)
     {
         health -= dmg;
-        
         //TODO: dmg effect hit effect or any effect sound
-
+        if (health >= 0)
+            HealthDropped?.Invoke(health);
         if (health <= 0)
         {
             Debug.LogError("Dead!");
             IsDead = true;
             restartPanel.SetActive(true);
         }
+        
     }
 
     private struct AxisLimits

@@ -18,7 +18,7 @@ public class TimePause : MonoBehaviour
         }
     }
 
-    public void PlayAnimationAndPauseTime()
+    public void PlayAnimationAndPauseTime(CamType camType)
     {
         if (animator != null)
         {
@@ -30,7 +30,7 @@ public class TimePause : MonoBehaviour
             Time.timeScale = 0;
 
             // Play the animation
-            animator.Play(animationName);
+            animator.Play(camType.ToString());
 
             // Start a coroutine to wait for the animation to finish
             StartCoroutine(ResumeTimeAfterAnimation());

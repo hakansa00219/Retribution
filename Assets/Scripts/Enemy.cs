@@ -15,8 +15,9 @@ public abstract class Enemy : MonoBehaviour
     protected EnemySpawnCombinations.Mob EnemyDetails;
     protected const float InitialDuration = 1f;
     private const float DamagedCooldown = 3f;
-    private const float StartImmunityDuration = 5f;
+    private const float AllImmunityDuration = 5f;
     public bool IsDamagedRecently = false;
+    public bool IsImmune = true;
     protected abstract UniTask MovementBehaviour();
     protected abstract UniTask ProjectileSpawningBehaviour();
     protected abstract void SetProjectileSpawnCombination();
@@ -25,6 +26,7 @@ public abstract class Enemy : MonoBehaviour
     {
         ProjectileCombinations = Resources.Load<ProjectileSpawnCombinations>("ProjectileSpawnCombinations");
         IsDamagedRecently = true;
+        IsImmune = true;
         immunityRenderer.enabled = true;
         StartImmunity();
     }
@@ -33,7 +35,6 @@ public abstract class Enemy : MonoBehaviour
     {
         EnemyDetails = enemyDetails;
         _spawnedEnemies = spawnedEnemies;
-        Debug.Log("B1");
         SetProjectileSpawnCombination();
     }
 
@@ -67,8 +68,9 @@ public abstract class Enemy : MonoBehaviour
 
     private async UniTaskVoid StartImmunity()
     {
-        await UniTask.Delay(TimeSpan.FromSeconds(StartImmunityDuration));
+        await UniTask.Delay(TimeSpan.FromSeconds(AllImmunityDuration));
         immunityRenderer.enabled = false;
         IsDamagedRecently = false;
+        IsImmune = false;
     }
 }

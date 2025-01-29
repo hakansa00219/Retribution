@@ -81,7 +81,12 @@ public class Big : Enemy
     protected override async UniTask ProjectileSpawningBehaviour()
     {
         //TODO: Before spawning maybe some visible effect that you know enemy attacking.
-        await UniTask.WhenAll(SpawnProjectiles());
+        while (enabled)
+        {
+            await UniTask.WhenAll(SpawnProjectiles());
+            await UniTask.Delay(TimeSpan.FromSeconds(6));
+            await UniTask.Yield();
+        }
     }
 
     private async UniTask SpawnProjectiles()
@@ -95,7 +100,10 @@ public class Big : Enemy
             {
                 var projectileDetails = spawnedData.Projectiles[j];
                 Projectile projectile = Instantiate(projectilePrefab[rng], transform.position + _selectedCombination.offsetSpawnPosition, Quaternion.identity);
-                projectile.SetStats(projectileDetails.Direction, projectileDetails.Speed, projectileBaseDamage);
+                projectile.SetStats(_currentCamType == CamType.Orthographic 
+                        ? projectileDetails.Direction 
+                        : new Vector3(0f, projectileDetails.Direction.x, projectileDetails.Direction.z)
+                    , projectileDetails.Speed, projectileBaseDamage);
             }
             await UniTask.DelayFrame(_selectedCombination.DelayFrameEachSpawn);
         }

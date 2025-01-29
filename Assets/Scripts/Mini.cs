@@ -19,7 +19,6 @@ public class Mini : Enemy
         CameraAnimationPlayer.Instance.CameraChanged += OnCameraChanged;
         _currentCamType = CameraAnimationPlayer.Instance.CamType;
         AI();
-        Debug.Log("B2");
     }
 
     private void OnCameraChanged(CamType camType)
@@ -51,13 +50,9 @@ public class Mini : Enemy
 
     private async UniTaskVoid AI()
     {
-        Debug.Log("B3");
         await UniTask.WhenAll(MoveInitialPosition());
-        Debug.Log("B4");
         await UniTask.Delay(TimeSpan.FromSeconds(2));
-        Debug.Log("B5");
         await UniTask.WhenAll(ProjectileSpawningBehaviour(), MovementBehaviour());
-        Debug.Log("B6");
     }
 
     protected override void SetProjectileSpawnCombination()
@@ -67,9 +62,7 @@ public class Mini : Enemy
     protected override async UniTask MoveInitialPosition()
     {
         // Lerp to the position in the data
-        Debug.Log("B8");
         await UniTask.SwitchToMainThread();
-        Debug.Log("B9");
         if (_currentCamType == CamType.Side)
             await MovementHelper.MoveTransformAsyncUnscaled(transform,
                 new Vector3(0f, 
@@ -78,7 +71,6 @@ public class Mini : Enemy
                 1f);
         else
             await MovementHelper.MoveTransformAsync(transform, EnemyDetails.AfterSpawnPosition, InitialDuration);
-        Debug.Log("B10");
     }
     
     protected override async UniTask MovementBehaviour()
@@ -89,9 +81,13 @@ public class Mini : Enemy
     protected override async UniTask ProjectileSpawningBehaviour()
     {
         //TODO: Before spawning maybe some visible effect that you know enemy attacking.
-        Debug.Log("B7");
-        await UniTask.WhenAll(SpawnProjectiles());
-        Debug.Log("B11");
+        while (enabled)
+        {
+            await UniTask.WhenAll(SpawnProjectiles());
+            await UniTask.Delay(TimeSpan.FromSeconds(4));
+            await UniTask.Yield();
+        }
+        
     }
 
     private async UniTask SpawnProjectiles()
@@ -105,7 +101,10 @@ public class Mini : Enemy
             {
                 var projectileDetails = spawnedData.Projectiles[j];
                 Projectile projectile = Instantiate(projectilePrefab[rng], transform.position + _selectedCombination.offsetSpawnPosition, Quaternion.identity);
-                projectile.SetStats(projectileDetails.Direction, projectileDetails.Speed, projectileBaseDamage);
+                projectile.SetStats(_currentCamType == CamType.Orthographic 
+                    ? projectileDetails.Direction 
+                    : new Vector3(0f, projectileDetails.Direction.x, projectileDetails.Direction.z)
+                    , projectileDetails.Speed, projectileBaseDamage);
             }
             await UniTask.DelayFrame(_selectedCombination.DelayFrameEachSpawn);
         }
