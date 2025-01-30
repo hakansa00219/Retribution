@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CameraAnimationPlayer cameraAnimationPlayer;
     [SerializeField] private GameObject restartPanel;
     [SerializeField] private Image startBlackPanel;
+    [SerializeField] private GameObject tutorialPanel;
     [SerializeField] private float gameStartDuration;
     
     public static GameManager Instance;
@@ -37,6 +38,8 @@ public class GameManager : MonoBehaviour
     private async UniTaskVoid StartTransition()
     {
         await StartBlackScreen();
+        tutorialPanel.SetActive(true);
+        await UniTask.WaitUntil(() => !tutorialPanel.activeSelf);
         await cameraAnimationPlayer.StartGameAnimation("Start");
         StartGame();
     }

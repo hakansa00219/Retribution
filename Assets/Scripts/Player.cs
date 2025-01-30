@@ -41,7 +41,6 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         _inputActions = new PlayerInputActions();
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Start()
@@ -79,6 +78,7 @@ public class Player : MonoBehaviour
     
     private void OnGameStarted()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         _isGameStarted = true;
     }
     
