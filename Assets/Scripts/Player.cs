@@ -93,8 +93,8 @@ public class Player : MonoBehaviour
         {
             case CamType.Orthographic:
                 // Calculate reversed X movement and normal Z movement
-                float reversedX = deltaPosition.x * 2f * Time.deltaTime;
-                float zMovement = deltaPosition.y * 2f * Time.deltaTime;
+                float reversedX = deltaPosition.x * 0.8f * Time.deltaTime;
+                float zMovement = deltaPosition.y * 0.8f * Time.deltaTime;
                 
                 // Apply movement on the X-Z plane
                 Vector3 movement = new Vector3(reversedX, 0, zMovement);
@@ -106,8 +106,8 @@ public class Player : MonoBehaviour
                     2f,
                     Mathf.Clamp(transform.position.z, _orthographicLimits.ZPosLimits.x, _orthographicLimits.ZPosLimits.y));
 
-                float yRotation = -deltaPosition.x * 50f * Time.deltaTime;
-                float zExtraRotation = Mathf.Abs(-deltaPosition.y) * 20f * Time.deltaTime;
+                float yRotation = -deltaPosition.x * 10f * Time.deltaTime;
+                float zExtraRotation = Mathf.Abs(-deltaPosition.y) * 4f * Time.deltaTime;
         
                 _currentYRotation += yRotation;
                 switch (_currentYRotation)
@@ -126,8 +126,8 @@ public class Player : MonoBehaviour
                 break;
             case CamType.Side:
                 // Calculate reversed X movement and normal Z movement
-                float zMove = deltaPosition.x * 2f * Time.deltaTime;
-                float yMove = deltaPosition.y * 2f * Time.deltaTime;
+                float zMove = deltaPosition.x * 0.8f * Time.deltaTime;
+                float yMove = deltaPosition.y * 0.8f * Time.deltaTime;
                 
                 // Apply movement on the X-Z plane
                 Vector3 move = new Vector3(0f, yMove, zMove);
@@ -139,8 +139,8 @@ public class Player : MonoBehaviour
                     Mathf.Clamp(transform.position.y, _sideLimits.YPosLimits.x, _sideLimits.YPosLimits.y),
                     Mathf.Clamp(transform.position.z, _sideLimits.ZPosLimits.x, _sideLimits.ZPosLimits.y));
                 
-                float xRotation = -deltaPosition.y * 50f * Time.deltaTime;
-                float zExRotation = Mathf.Abs(-deltaPosition.x) * 20f * Time.deltaTime;
+                float xRotation = -deltaPosition.y * 10f * Time.deltaTime;
+                float zExRotation = Mathf.Abs(-deltaPosition.x) * 4f * Time.deltaTime;
                 
                 _currentXRotation += xRotation;
                 switch (_currentXRotation)

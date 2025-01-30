@@ -1473,7 +1473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 3
-  skillCooldown: 10
+  skillCooldown: 6
 --- !u!54 &724943555
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1860,8 +1860,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.3, y: 1, z: 3}
-  m_Center: {x: 0, y: 0, z: 2}
+  m_Size: {x: 0.5, y: 0.16, z: 2.36}
+  m_Center: {x: 0, y: 0, z: 2.12}
 --- !u!4 &1035477086
 Transform:
   m_ObjectHideFlags: 0
@@ -2492,7 +2492,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1501172371
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2969,6 +2969,7 @@ MonoBehaviour:
       Data: 
   enemyInitSpawnPosition: {x: 0, y: 2, z: 15}
   soulsView: {fileID: 440086972}
+  skipGameplay: 1
 --- !u!1 &1742657168
 GameObject:
   m_ObjectHideFlags: 0

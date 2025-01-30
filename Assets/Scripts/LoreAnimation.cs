@@ -67,6 +67,7 @@ public class LoreAnimation : MonoBehaviour
                 }
                 yesButtonImage.color = new Color(1, 1, 1, 1);
                 noButtonImage.color = new Color(1, 1, 1, 1);
+                Cursor.lockState = CursorLockMode.None;
                 break;
             }
                 
@@ -110,6 +111,7 @@ public class LoreAnimation : MonoBehaviour
     private async UniTaskVoid EndAnimation(Image firstImage, Image secondImage, string afterSceneName)
     {
         _isAnswered = true;
+        Cursor.lockState = CursorLockMode.Locked;
         await UniTask.WhenAll(EndImageAnimation(loreImages[^1]), EndImageAnimation(yesButtonImage), EndImageAnimation(noButtonImage));
         await ImageAnimation(firstImage);
         await ImageAnimation(secondImage);

@@ -15,6 +15,7 @@ public class EnemySpawner : SerializedMonoBehaviour
     private List<GameObject> _spawnedEnemies = new List<GameObject>();
     private EnemySpawnCombinations _combinations;
 
+    [SerializeField] private bool skipGameplay;
     public event Action<int> TurnChanged;
     public event Action<int> EnemiesDestroyed;
     
@@ -43,6 +44,13 @@ public class EnemySpawner : SerializedMonoBehaviour
         //Started
         await UniTask.Delay(TimeSpan.FromSeconds(3));
         await UniTask.SwitchToMainThread();
+        
+        if (skipGameplay)
+        {
+            await Victory();
+            return;
+        } 
+        
         foreach (var level in _combinations.Levels)
         {
             for (var index = 0; index < level.Turns.Length; index++)

@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   immunityRenderer: {fileID: 370026855453737837}
-  health: 5
+  health: 4
   projectilePrefab:
   - {fileID: 8645233611590393495, guid: a65eb6a3b13d0834eac22c961782861e, type: 3}
   - {fileID: 8645233611590393495, guid: 29e29efec7d074f409763ccfac60a5ee, type: 3}
