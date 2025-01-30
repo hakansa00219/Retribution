@@ -1,10 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -30,16 +26,15 @@ public class Player : MonoBehaviour
     private float _currentYRotation;
     private float _currentXRotation;
     public bool IsDead { get; private set; }
-
-    //
+    
     [SerializeField]
     private Deflect deflect;
     
     public Deflect Deflect => deflect;
     [SerializeField] private int health;
-    [SerializeField] private GameObject restartPanel;
 
     private CamType _camType;
+    private bool _isGameStarted = false;
 
     public event Action<int> HealthDropped;
     
@@ -60,7 +55,10 @@ public class Player : MonoBehaviour
         _inputActions.Player.Deflect.performed += OnDeflect;
         _inputActions.Player.Move.performed += OnMove;
         _inputActions.Player.Move.canceled += OnMoveCanceled;
+
+        GameManager.GameStarted += OnGameStarted;
     }
+    
 
     private void OnDisable()
     {
@@ -70,6 +68,8 @@ public class Player : MonoBehaviour
         _inputActions.Player.Move.canceled -= OnMoveCanceled;
         
         CameraAnimationPlayer.Instance.CameraChanged -= OnCameraChanged;
+        
+        GameManager.GameStarted -= OnGameStarted;
     }
 
     private void OnCameraChanged(CamType camType)
@@ -77,8 +77,14 @@ public class Player : MonoBehaviour
         _camType = camType;
     }
     
+    private void OnGameStarted()
+    {
+        _isGameStarted = true;
+    }
+    
     private void Update()
     {
+        if (!_isGameStarted) return;
         
         // Get the delta position from the input action
         Vector2 deltaPosition = _inputMovement;
@@ -166,6 +172,8 @@ public class Player : MonoBehaviour
 
     private void OnDeflect(InputAction.CallbackContext context)
     {
+        if(!_isGameStarted) return;
+        
         deflect.Use();
     }
 
@@ -179,7 +187,7 @@ public class Player : MonoBehaviour
         {
             Debug.LogError("Dead!");
             IsDead = true;
-            restartPanel.SetActive(true);
+            GameManager.Instance.LostGame();
         }
         
     }

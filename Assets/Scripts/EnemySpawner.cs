@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class EnemySpawner : SerializedMonoBehaviour
 {
@@ -21,7 +19,20 @@ public class EnemySpawner : SerializedMonoBehaviour
     private void Awake()
     {
         _combinations = Resources.Load<EnemySpawnCombinations>("Enemy Spawn Combinations");
-        UniTask.SwitchToMainThread();
+    }
+
+    private void OnEnable()
+    {
+        GameManager.GameStarted += OnGameStarted;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.GameStarted -= OnGameStarted;
+    }
+
+    private void OnGameStarted()
+    {
         StartLevelSpawning();
     }
 
@@ -63,5 +74,13 @@ public class EnemySpawner : SerializedMonoBehaviour
                 
             }
         }
+
+        await Victory();
+    }
+
+    private async UniTask Victory()
+    {
+        await UniTask.Delay(TimeSpan.FromSeconds(3));
+        await GameManager.Instance.Victory();
     }
 }

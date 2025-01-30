@@ -51,6 +51,11 @@ public class CameraAnimationPlayer : MonoBehaviour
         timePause.PlayAnimationAndPauseTime(CamType);
     }
 
+    public async UniTask StartGameAnimation(string animationName)
+    {
+        await timePause.StartGameAnimation(animationName);
+    }
+
     // private async UniTaskVoid StartAnimation(float delay)
     // {
     //     await UniTask.Delay(TimeSpan.FromSeconds(delay), ignoreTimeScale: false);

@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class TimePause : MonoBehaviour
@@ -10,14 +12,32 @@ public class TimePause : MonoBehaviour
     [SerializeField]
     private Transform player;
 
-    void Update()
+    public async UniTask StartGameAnimation(string animationName)
     {
-        if (isAnimationPlaying)
+        await PlayAnimation(animationName);
+    }
+    
+    private async UniTask PlayAnimation(string animationName)
+    {
+        if (animator != null)
         {
-            // If you need specific updates during pause, use Time.unscaledDeltaTime
+            animator.updateMode = AnimatorUpdateMode.Normal;
+            // Play the animation
+            animator.Play(animationName);
+            // Start a coroutine to wait for the animation to finish
+            await Animation();
+
         }
     }
-
+    
+    private async UniTask Animation()
+    {
+        // Wait for the animation to complete
+        RuntimeAnimatorController controller = animator.runtimeAnimatorController;
+        float animationLength = controller.animationClips.First(clip => clip.name == animationName).length + 1;
+        await UniTask.Delay(TimeSpan.FromSeconds(animationLength));
+    }
+    
     public void PlayAnimationAndPauseTime(CamType camType)
     {
         if (animator != null)
