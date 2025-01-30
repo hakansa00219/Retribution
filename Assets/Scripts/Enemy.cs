@@ -13,6 +13,7 @@ public abstract class Enemy : MonoBehaviour
     
     protected ProjectileSpawnCombinations ProjectileCombinations;
     protected EnemySpawnCombinations.Mob EnemyDetails;
+    protected SoulsView SoulsView;
     protected const float InitialDuration = 1f;
     private const float DamagedCooldown = 3f;
     private const float AllImmunityDuration = 5f;
@@ -31,10 +32,11 @@ public abstract class Enemy : MonoBehaviour
         StartImmunity();
     }
 
-    public void Initialize(EnemySpawnCombinations.Mob enemyDetails, List<GameObject> spawnedEnemies)
+    public void Initialize(EnemySpawnCombinations.Mob enemyDetails, List<GameObject> spawnedEnemies, SoulsView soulsView)
     {
         EnemyDetails = enemyDetails;
         _spawnedEnemies = spawnedEnemies;
+        SoulsView = soulsView;
         SetProjectileSpawnCombination();
     }
 
@@ -47,6 +49,12 @@ public abstract class Enemy : MonoBehaviour
         if (health <= 0)
         {
             //TODO: or some effect
+            SoulsView.IncreaseSoulCount(EnemyDetails.EnemyType switch
+            {
+                EnemyType.Mini => 10,
+                EnemyType.Mid => 50,
+                EnemyType.Big => 250
+            });
             Destroy(gameObject);
             _spawnedEnemies.Remove(gameObject);
         }

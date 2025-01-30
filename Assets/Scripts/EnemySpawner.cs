@@ -11,10 +11,12 @@ public class EnemySpawner : SerializedMonoBehaviour
     [OdinSerialize, SerializeField]
     private Dictionary<EnemyType, GameObject> _enemies = new Dictionary<EnemyType, GameObject>();
     
+    [SerializeField] private SoulsView soulsView;
     private List<GameObject> _spawnedEnemies = new List<GameObject>();
     private EnemySpawnCombinations _combinations;
 
     public event Action<int> TurnChanged;
+    public event Action<int> EnemiesDestroyed;
     
     private void Awake()
     {
@@ -65,7 +67,7 @@ public class EnemySpawner : SerializedMonoBehaviour
                         return;
                     }
 
-                    e.Initialize(enemy, _spawnedEnemies);
+                    e.Initialize(enemy, _spawnedEnemies, soulsView);
                     _spawnedEnemies.Add(enemyObj.gameObject);
                 }
 
