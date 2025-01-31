@@ -8,6 +8,7 @@ public abstract class Skill : MonoBehaviour
 {
     [SerializeField] private float duration;
     [SerializeField] private float skillCooldown;
+    [SerializeField] private AudioClip skillSound;
     private bool IsSkillCastable { get; set; } = true;
     public bool IsActive { get; protected set; }
     public float SkillCooldown => skillCooldown;
@@ -28,6 +29,7 @@ public abstract class Skill : MonoBehaviour
             Debug.LogError("Skill is on cooldown!");
             return;
         }
+        SoundManager.Instance.PlaySound(skillSound, 2f);
         SkillCast?.Invoke(skillCooldown);
         ActiveSkillEffect();
         IsSkillCastable = false;

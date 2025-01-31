@@ -84,7 +84,7 @@ public class Mini : Enemy
         while (enabled)
         {
             await UniTask.WhenAll(SpawnProjectiles());
-            await UniTask.Delay(TimeSpan.FromSeconds(4));
+            await UniTask.Delay(TimeSpan.FromSeconds(5));
             await UniTask.Yield();
         }
         
@@ -104,8 +104,10 @@ public class Mini : Enemy
                 projectile.SetStats(_currentCamType == CamType.Orthographic 
                     ? projectileDetails.Direction 
                     : new Vector3(0f, projectileDetails.Direction.x, projectileDetails.Direction.z)
-                    , projectileDetails.Speed, projectileBaseDamage);
+                    , projectileDetails.Speed, projectileBaseDamage,
+                    projectileSound);
             }
+            SoundManager.Instance.PlaySound(projectileSound);
             await UniTask.DelayFrame(_selectedCombination.DelayFrameEachSpawn);
         }
     }

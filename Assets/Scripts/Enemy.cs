@@ -8,6 +8,8 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected MeshRenderer immunityRenderer;
     [SerializeField] protected int health;
     [SerializeField] protected Projectile[] projectilePrefab;
+    [SerializeField] protected AudioClip projectileSound;
+    [SerializeField] protected AudioClip getHitSound;
 
     private List<GameObject> _spawnedEnemies;
     
@@ -62,6 +64,7 @@ public abstract class Enemy : MonoBehaviour
         {
             Vibration v = new Vibration(gameObject.GetComponent<Rigidbody>(), 0.3f, 0.1f);
             StartCoroutine(v.Vibrate());
+            SoundManager.Instance.PlaySound(getHitSound, 2f);
             immunityRenderer.enabled = true;
             DamageCooldownReset();
         }

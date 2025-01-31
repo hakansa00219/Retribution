@@ -6,6 +6,7 @@ using UnityEngine;
 public class CharacterTrigger : MonoBehaviour
 {
     [SerializeField] private Player owner;
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy Projectiles"))

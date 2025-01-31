@@ -12,12 +12,14 @@ public class Projectile : MonoBehaviour
     private Vector3 _direction;
 
     private float _bornTime;
+    private AudioClip _projectileSound;
 
     public int BaseDamage { get; set; }
     public float Speed { get; set; }
     public bool IsDeflected { get; set; }
     
     public bool IsDeflectable => isDeflectable;
+    public AudioClip ProjectileSound => _projectileSound;
 
     private void Update()
     {
@@ -33,11 +35,12 @@ public class Projectile : MonoBehaviour
         transform.Translate(movement, Space.World);
     }
 
-    public void SetStats(Vector3 direction, float speed, int baseDamage)
+    public void SetStats(Vector3 direction, float speed, int baseDamage, AudioClip projectileSound)
     {
         _direction = direction;
         Speed = speed;
         BaseDamage = baseDamage;
+        _projectileSound = projectileSound;
     }
 
     public void SetMaterialDeflected()

@@ -115,6 +115,8 @@ MonoBehaviour:
   projectilePrefab:
   - {fileID: 8645233611590393495, guid: a65eb6a3b13d0834eac22c961782861e, type: 3}
   - {fileID: 8645233611590393495, guid: 29e29efec7d074f409763ccfac60a5ee, type: 3}
+  projectileSound: {fileID: 8300000, guid: 8b9824f33f158e04390242eef1981a64, type: 3}
+  getHitSound: {fileID: 8300000, guid: 00228d226d50d414bab6370fd64801b6, type: 3}
   IsDamagedRecently: 0
   IsImmune: 1
   speed: 4

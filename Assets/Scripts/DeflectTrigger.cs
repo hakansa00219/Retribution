@@ -37,7 +37,9 @@ public class DeflectTrigger : MonoBehaviour
         if (projectile.IsDeflected)
             return;
         projectile.gameObject.layer = LayerMask.NameToLayer("Deflected Projectiles");
+        SoundManager.Instance.PlaySound(projectile.ProjectileSound, 2f);
         _deflectSkill.OnDeflect(projectile);
+        
     }
     
     private void OnTriggerExit(Collider other)

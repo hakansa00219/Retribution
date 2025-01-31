@@ -84,7 +84,7 @@ public class Mid : Enemy
         while (enabled)
         {
             await UniTask.WhenAll(SpawnProjectiles());
-            await UniTask.Delay(TimeSpan.FromSeconds(5));
+            await UniTask.Delay(TimeSpan.FromSeconds(7));
             await UniTask.Yield();
         }
     }
@@ -103,8 +103,10 @@ public class Mid : Enemy
                 projectile.SetStats(_currentCamType == CamType.Orthographic 
                         ? projectileDetails.Direction 
                         : new Vector3(0f, projectileDetails.Direction.x, projectileDetails.Direction.z)
-                    , projectileDetails.Speed, projectileBaseDamage);
+                    , projectileDetails.Speed, projectileBaseDamage,
+                    projectileSound);
             }
+            SoundManager.Instance.PlaySound(projectileSound);
             await UniTask.DelayFrame(_selectedCombination.DelayFrameEachSpawn);
         }
     }

@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     
     [SerializeField]
     private Deflect deflect;
-    
+    [SerializeField] private AudioClip getHitSound;
     public Deflect Deflect => deflect;
     [SerializeField] private int health;
 
@@ -173,7 +173,6 @@ public class Player : MonoBehaviour
     private void OnDeflect(InputAction.CallbackContext context)
     {
         if(!_isGameStarted) return;
-        
         deflect.Use();
     }
 
@@ -181,6 +180,7 @@ public class Player : MonoBehaviour
     {
         health -= dmg;
         //TODO: dmg effect hit effect or any effect sound
+        SoundManager.Instance.PlaySound(getHitSound);
         if (health >= 0)
             HealthDropped?.Invoke(health);
         if (health <= 0)
