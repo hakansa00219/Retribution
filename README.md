@@ -1,1 +1,1 @@
-2025-1 PirateSoftware gamejam
+2025-1 PirateSoftware itch.io Gamejam 
