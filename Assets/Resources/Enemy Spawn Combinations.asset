@@ -17,11 +17,11 @@ MonoBehaviour:
     - Enemies:
       - EnemyType: 0
         AfterSpawnPosition: {x: 2, y: 2, z: 4}
-        MovementBehaviour: 
+        MovementBehaviour: LeftRightMovement
         ProjectileSpawnCombination: Mini_Quad_Shot
       - EnemyType: 0
         AfterSpawnPosition: {x: -2, y: 2, z: 4}
-        MovementBehaviour: 
+        MovementBehaviour: LeftRightMovement
         ProjectileSpawnCombination: Mini_Triple_Gatling
       CamType: 0
     - Enemies:

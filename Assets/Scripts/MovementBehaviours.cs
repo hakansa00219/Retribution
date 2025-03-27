@@ -7,13 +7,28 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Scriptable Objects/MovementBehaviours", fileName = "MovementBehaviours")]
 public class MovementBehaviours : SerializedScriptableObject
 {
-    public Dictionary<string, Func<Enemy, UniTaskVoid>> Behaviours = new Dictionary<string, Func<Enemy, UniTaskVoid>>()
+    public List<MoveAction> Behaviours = new List<MoveAction>()
     {
-        {"LeftRightMovement", LeftRightMovement },
+        {
+            new MoveAction(actionName: "LeftRightMovement", action: LeftRightMovement)
+        }
     };
 
+    [Serializable]
+    public struct MoveAction
+    {
+        public string ActionName;
+        public Func<Enemy, UniTask> Action;
+
+        public MoveAction(string actionName, Func<Enemy, UniTask> action)
+        {
+            ActionName = actionName;
+            Action = action;
+        }
+    }
+
     //need to be canceled when camera changed
-    private static async UniTaskVoid LeftRightMovement(Enemy e)
+    private static async UniTask LeftRightMovement(Enemy e)
     {
         int rng = UnityEngine.Random.Range(0, 2);
         switch (rng)

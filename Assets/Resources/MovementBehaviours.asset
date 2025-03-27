@@ -23,8 +23,9 @@ MonoBehaviour:
     SerializationNodes:
     - Name: Behaviours
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Func`2[[System.Single,
-        mscorlib],[System.Single, mscorlib]], mscorlib]], mscorlib
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Func`2[[Enemy,
+        Assembly-CSharp],[Cysharp.Threading.Tasks.UniTaskVoid, UniTask]], mscorlib]],
+        mscorlib
     - Name: comparer
       Entry: 7
       Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,

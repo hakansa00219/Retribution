@@ -12,6 +12,7 @@ public class Mid : Enemy
     [SerializeField] private int projectileBaseDamage;
     private Vector3 _afterSpawnPosition;
     private ProjectileSpawnCombinations.CombinedData _selectedCombination;
+    private Func<Enemy, UniTask> _selectedMovementAction;
     private CamType _currentCamType;
 
     private void Start()
@@ -59,6 +60,10 @@ public class Mid : Enemy
     {
         _selectedCombination = ProjectileCombinations.combinations.Find((x) => x.skillName == EnemyDetails.ProjectileSpawnCombination);
     }
+    protected override void SetMovementBehaviour()
+    {
+        _selectedMovementAction = MovementBehaviours.Behaviours.Find((x) => x.ActionName == EnemyDetails.MovementBehaviour).Action;
+    }
     protected override async UniTask MoveInitialPosition()
     {
         // Lerp to the position in the data
@@ -75,6 +80,9 @@ public class Mid : Enemy
     
     protected override async UniTask MovementBehaviour()
     {
+        if (_selectedMovementAction == null) return;
+        
+        await UniTask.WhenAll(_selectedMovementAction(this));
         await UniTask.Delay(TimeSpan.FromSeconds(2));
     }
 

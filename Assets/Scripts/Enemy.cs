@@ -14,20 +14,27 @@ public abstract class Enemy : MonoBehaviour
     private List<GameObject> _spawnedEnemies;
     
     protected ProjectileSpawnCombinations ProjectileCombinations;
+    protected MovementBehaviours MovementBehaviours;
     protected EnemySpawnCombinations.Mob EnemyDetails;
-    protected SoulsView SoulsView;
+    private SoulsView _soulsView;
+    
     protected const float InitialDuration = 1f;
     private const float DamagedCooldown = 3f;
     private const float AllImmunityDuration = 5f;
+    
     public bool IsDamagedRecently = false;
     public bool IsImmune = true;
+    
     protected abstract UniTask MovementBehaviour();
     protected abstract UniTask ProjectileSpawningBehaviour();
     protected abstract void SetProjectileSpawnCombination();
+    protected abstract void SetMovementBehaviour();
     protected abstract UniTask MoveInitialPosition();
+    
     protected virtual void Awake()
     {
         ProjectileCombinations = Resources.Load<ProjectileSpawnCombinations>("ProjectileSpawnCombinations");
+        MovementBehaviours = Resources.Load<MovementBehaviours>("MovementBehaviours");
         IsDamagedRecently = true;
         IsImmune = true;
         immunityRenderer.enabled = true;
@@ -38,7 +45,7 @@ public abstract class Enemy : MonoBehaviour
     {
         EnemyDetails = enemyDetails;
         _spawnedEnemies = spawnedEnemies;
-        SoulsView = soulsView;
+        _soulsView = soulsView;
         SetProjectileSpawnCombination();
     }
 
@@ -51,7 +58,7 @@ public abstract class Enemy : MonoBehaviour
         if (health <= 0)
         {
             //TODO: or some effect
-            SoulsView.IncreaseSoulCount(EnemyDetails.EnemyType switch
+            _soulsView.IncreaseSoulCount(EnemyDetails.EnemyType switch
             {
                 EnemyType.Mini => 10,
                 EnemyType.Mid => 50,
