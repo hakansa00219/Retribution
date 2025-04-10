@@ -29,6 +29,33 @@ public static class MovementHelper
         // Ensure final position is exactly the target
         transform.position = targetPosition;
     }
+    
+    public static async UniTask MoveCircleTransformAsync(Transform transform, float speed)
+    {
+        if (transform == null)
+            return;
+        
+        Vector3 initialPosition = transform.position;
+        float radius = 1f;
+        float angle = 0f;
+
+        while (true)
+        {
+            if (transform == null)
+                return;
+            
+            angle += speed * Time.deltaTime;
+            if (angle >= Mathf.PI * 2f) angle -= Mathf.PI * 2f;
+
+            float x = Mathf.Cos(angle) * radius;
+            float y = Mathf.Sin(angle) * radius;
+            
+            transform.position = initialPosition + new Vector3(x, 0f, y);
+            
+            await UniTask.Yield();
+        }
+    }
+    
     public static async UniTask MoveTransformAsyncUnscaled(Transform transform, Vector3 targetPosition, float time)
     {
         if (transform == null)

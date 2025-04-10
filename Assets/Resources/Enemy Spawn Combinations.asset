@@ -27,25 +27,25 @@ MonoBehaviour:
     - Enemies:
       - EnemyType: 0
         AfterSpawnPosition: {x: -3, y: 2, z: 4}
-        MovementBehaviour: 
+        MovementBehaviour: UpDownMovement
         ProjectileSpawnCombination: Mini_Triple_Shot
       - EnemyType: 0
         AfterSpawnPosition: {x: -1, y: 2, z: 4}
-        MovementBehaviour: 
+        MovementBehaviour: LeftRightMovement
         ProjectileSpawnCombination: Mini_Circle_Shot
       - EnemyType: 0
         AfterSpawnPosition: {x: 1, y: 2, z: 4}
-        MovementBehaviour: 
+        MovementBehaviour: LeftRightMovement
         ProjectileSpawnCombination: Mini_One_Shot
       - EnemyType: 0
         AfterSpawnPosition: {x: 3, y: 2, z: 4}
-        MovementBehaviour: 
+        MovementBehaviour: UpDownMovement
         ProjectileSpawnCombination: Mini_Triple_Shot
       CamType: 0
     - Enemies:
       - EnemyType: 1
         AfterSpawnPosition: {x: 0, y: 2, z: 2}
-        MovementBehaviour: 
+        MovementBehaviour: CircleMovement
         ProjectileSpawnCombination: Mid_Straight_Left
       - EnemyType: 0
         AfterSpawnPosition: {x: -2, y: 2, z: 4}
@@ -53,7 +53,7 @@ MonoBehaviour:
         ProjectileSpawnCombination: Mini_Triple_Shot
       - EnemyType: 0
         AfterSpawnPosition: {x: 0, y: 2, z: 4}
-        MovementBehaviour: LeftRightMovement
+        MovementBehaviour: UpDownMovement
         ProjectileSpawnCombination: Mini_Triple_Shot
       - EnemyType: 0
         AfterSpawnPosition: {x: 2, y: 2, z: 4}
@@ -63,126 +63,126 @@ MonoBehaviour:
     - Enemies:
       - EnemyType: 1
         AfterSpawnPosition: {x: -2, y: 2, z: 4}
-        MovementBehaviour: 
+        MovementBehaviour: CircleMovement
         ProjectileSpawnCombination: Mid_Straight_Right
       - EnemyType: 1
         AfterSpawnPosition: {x: 2, y: 2, z: 4}
-        MovementBehaviour: 
+        MovementBehaviour: CircleMovement
         ProjectileSpawnCombination: Mid_Straight_Left
       CamType: 1
     - Enemies:
       - EnemyType: 1
         AfterSpawnPosition: {x: 0, y: 2, z: 2}
-        MovementBehaviour: 
+        MovementBehaviour: CircleMovement
         ProjectileSpawnCombination: Mid_Big_Circle_Shot
       - EnemyType: 0
         AfterSpawnPosition: {x: -1, y: 2, z: 4}
-        MovementBehaviour: 
+        MovementBehaviour: LeftRightMovement
         ProjectileSpawnCombination: Mini_One_Shot
       - EnemyType: 0
         AfterSpawnPosition: {x: 0, y: 2, z: 4}
-        MovementBehaviour: 
+        MovementBehaviour: UpDownMovement
         ProjectileSpawnCombination: Mini_One_Shot
       - EnemyType: 0
         AfterSpawnPosition: {x: 1, y: 2, z: 4}
-        MovementBehaviour: 
+        MovementBehaviour: LeftRightMovement
         ProjectileSpawnCombination: Mini_One_Shot
       CamType: 1
     - Enemies:
       - EnemyType: 2
         AfterSpawnPosition: {x: 0, y: 2, z: 3}
-        MovementBehaviour: 
+        MovementBehaviour: SquareMovement
         ProjectileSpawnCombination: Big_Bombs
       CamType: 0
     - Enemies:
       - EnemyType: 1
         AfterSpawnPosition: {x: -2, y: 2, z: 2}
-        MovementBehaviour: 
+        MovementBehaviour: CircleMovement
         ProjectileSpawnCombination: Mid_Straight_Right
       - EnemyType: 1
         AfterSpawnPosition: {x: 2, y: 2, z: 2}
-        MovementBehaviour: 
+        MovementBehaviour: CircleMovement
         ProjectileSpawnCombination: Mid_Straight_Left
       - EnemyType: 0
         AfterSpawnPosition: {x: -4, y: 2, z: 4}
-        MovementBehaviour: 
+        MovementBehaviour: LeftRightMovement
         ProjectileSpawnCombination: Mini_One_Shot_Random_Direction
       - EnemyType: 0
         AfterSpawnPosition: {x: -2, y: 2, z: 4}
-        MovementBehaviour: 
+        MovementBehaviour: LeftRightMovement
         ProjectileSpawnCombination: Mini_One_Shot_Random_Direction
       - EnemyType: 0
         AfterSpawnPosition: {x: 2, y: 2, z: 4}
-        MovementBehaviour: 
+        MovementBehaviour: LeftRightMovement
         ProjectileSpawnCombination: Mini_One_Shot_Random_Direction
       - EnemyType: 0
         AfterSpawnPosition: {x: 4, y: 2, z: 4}
-        MovementBehaviour: 
+        MovementBehaviour: LeftRightMovement
         ProjectileSpawnCombination: Mini_One_Shot_Random_Direction
       CamType: 0
     - Enemies:
       - EnemyType: 0
         AfterSpawnPosition: {x: -6, y: 2, z: 4}
-        MovementBehaviour: 
+        MovementBehaviour: LeftRightMovement
         ProjectileSpawnCombination: Mini_One_Shot_Random_Direction
       - EnemyType: 0
         AfterSpawnPosition: {x: -4.5, y: 2, z: 4}
-        MovementBehaviour: 
+        MovementBehaviour: LeftRightMovement
         ProjectileSpawnCombination: Mini_Triple_Shot
       - EnemyType: 0
         AfterSpawnPosition: {x: -3, y: 2, z: 4}
-        MovementBehaviour: 
+        MovementBehaviour: LeftRightMovement
         ProjectileSpawnCombination: Mini_One_Shot_Random_Direction
       - EnemyType: 0
         AfterSpawnPosition: {x: -1.5, y: 2, z: 4}
-        MovementBehaviour: 
+        MovementBehaviour: LeftRightMovement
         ProjectileSpawnCombination: Mini_Quad_Shot
       - EnemyType: 0
         AfterSpawnPosition: {x: 0, y: 2, z: 4}
-        MovementBehaviour: 
+        MovementBehaviour: LeftRightMovement
         ProjectileSpawnCombination: Mini_One_Shot_Random_Direction
       - EnemyType: 0
         AfterSpawnPosition: {x: 1.5, y: 2, z: 4}
-        MovementBehaviour: 
+        MovementBehaviour: LeftRightMovement
         ProjectileSpawnCombination: Mini_Triple_Shot
       - EnemyType: 0
         AfterSpawnPosition: {x: 3, y: 2, z: 4}
-        MovementBehaviour: 
+        MovementBehaviour: LeftRightMovement
         ProjectileSpawnCombination: Mini_One_Shot_Random_Direction
       - EnemyType: 0
         AfterSpawnPosition: {x: 4.5, y: 2, z: 4}
-        MovementBehaviour: 
+        MovementBehaviour: LeftRightMovement
         ProjectileSpawnCombination: Mini_One_Shot_Random_Direction
       - EnemyType: 0
         AfterSpawnPosition: {x: 6, y: 2, z: 4}
-        MovementBehaviour: 
+        MovementBehaviour: LeftRightMovement
         ProjectileSpawnCombination: Mini_One_Shot_Random_Direction
       CamType: 0
     - Enemies:
       - EnemyType: 2
         AfterSpawnPosition: {x: 0, y: 2, z: 4}
-        MovementBehaviour: LeftRightMovement
+        MovementBehaviour: SquareMovement
         ProjectileSpawnCombination: Big_Bombs
       - EnemyType: 2
         AfterSpawnPosition: {x: 0, y: 2, z: 4}
-        MovementBehaviour: LeftRightMovement
+        MovementBehaviour: SquareMovement
         ProjectileSpawnCombination: Big_Bombs
       CamType: 1
     - Enemies:
       - EnemyType: 2
         AfterSpawnPosition: {x: 0, y: 2, z: 4}
-        MovementBehaviour: 
+        MovementBehaviour: SquareMovement
         ProjectileSpawnCombination: Big_Bombs
       - EnemyType: 1
         AfterSpawnPosition: {x: 0, y: 2, z: 2}
-        MovementBehaviour: 
+        MovementBehaviour: CircleMovement
         ProjectileSpawnCombination: Mid_Straight_Right
       - EnemyType: 0
         AfterSpawnPosition: {x: 2, y: 2, z: 4}
-        MovementBehaviour: 
+        MovementBehaviour: LeftRightMovement
         ProjectileSpawnCombination: Mini_Quad_Shot
       - EnemyType: 0
         AfterSpawnPosition: {x: -2, y: 2, z: 4}
-        MovementBehaviour: 
+        MovementBehaviour: UpDownMovement
         ProjectileSpawnCombination: Mini_Quad_Shot
       CamType: 1

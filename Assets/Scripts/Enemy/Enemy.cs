@@ -47,6 +47,7 @@ public abstract class Enemy : MonoBehaviour
         _spawnedEnemies = spawnedEnemies;
         _soulsView = soulsView;
         SetProjectileSpawnCombination();
+        SetMovementBehaviour();
     }
 
     public void OnDamaged(int dmg)
