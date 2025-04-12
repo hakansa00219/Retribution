@@ -49,9 +49,13 @@ public class MovementBehaviours : SerializedScriptableObject
                 while (IsEnemyValid(e))
                 {
                     await MovementHelper.MoveTransformAsync(e.transform,
-                        startPos + new Vector3(offset, 0f, 0f), 2f);
+                        startPos + 
+                        (e.CurrentCamType == CamType.Orthographic ? new Vector3(offset, 0f, 0f) : new Vector3(0f, offset, 0f)),
+                        2f);
                     await MovementHelper.MoveTransformAsync(e.transform,
-                        startPos + new Vector3(-offset, 0f, 0f), 2f);
+                        startPos + 
+                        (e.CurrentCamType == CamType.Orthographic ? new Vector3(-offset, 0f, 0f) : new Vector3(0f, -offset, 0f)),
+                        2f);
                 } 
                 break;
             //go -x
@@ -59,9 +63,13 @@ public class MovementBehaviours : SerializedScriptableObject
                 while (IsEnemyValid(e))
                 {
                     await MovementHelper.MoveTransformAsync(e.transform,
-                        startPos + new Vector3(-offset, 0f, 0f), 2f);
+                        startPos + 
+                        (e.CurrentCamType == CamType.Orthographic ? new Vector3(-offset, 0f, 0f) : new Vector3(0f, -offset, 0f)),
+                        2f);
                     await MovementHelper.MoveTransformAsync(e.transform,
-                        startPos + new Vector3(offset, 0f, 0f), 2f);
+                        startPos + 
+                        (e.CurrentCamType == CamType.Orthographic ? new Vector3(offset, 0f, 0f) : new Vector3(0f, offset, 0f)),
+                        2f);
                 }
                 break;
             default:
@@ -83,9 +91,13 @@ public class MovementBehaviours : SerializedScriptableObject
                 while (IsEnemyValid(e))
                 {
                     await MovementHelper.MoveTransformAsync(e.transform,
-                        startPos + new Vector3(0f, 0f, offset), 2f);
+                        startPos + 
+                        (e.CurrentCamType == CamType.Orthographic ? new Vector3(0f, 0f, offset) : new Vector3(0f, offset, 0f)),
+                        2f);
                     await MovementHelper.MoveTransformAsync(e.transform,
-                        startPos + new Vector3(0f, 0f, -offset), 2f);
+                        startPos + 
+                        (e.CurrentCamType == CamType.Orthographic ? new Vector3(0f, 0f, -offset) : new Vector3(0f, -offset, 0f)),
+                        2f);
                 } 
                 break;
             //go -x
@@ -93,9 +105,13 @@ public class MovementBehaviours : SerializedScriptableObject
                 while (IsEnemyValid(e))
                 {
                     await MovementHelper.MoveTransformAsync(e.transform,
-                        startPos + new Vector3(0f, 0f, -offset), 2f);
+                        startPos + 
+                        (e.CurrentCamType == CamType.Orthographic ? new Vector3(0f, 0f, -offset) : new Vector3(0f, -offset, 0f)),
+                        2f);
                     await MovementHelper.MoveTransformAsync(e.transform,
-                        startPos + new Vector3(0f, 0f, offset), 2f);
+                        startPos + 
+                        (e.CurrentCamType == CamType.Orthographic ? new Vector3(0f, 0f, offset) : new Vector3(0f, offset, 0f)),
+                        2f);
                 }
                 break;
             default:
@@ -117,9 +133,13 @@ public class MovementBehaviours : SerializedScriptableObject
                 while (IsEnemyValid(e))
                 {
                     await MovementHelper.MoveTransformAsync(e.transform,
-                        startPos + new Vector3(0f, 0f, offset), 4f);
+                        startPos + 
+                        (e.CurrentCamType == CamType.Orthographic ? new Vector3(0f, 0f, offset) : new Vector3(0f, offset, 0f)),
+                        4f);
                     await MovementHelper.MoveTransformAsync(e.transform,
-                        startPos + new Vector3(offset, 0f, offset), 4f);
+                        startPos + 
+                        (e.CurrentCamType == CamType.Orthographic ? new Vector3(offset, 0f, offset) : new Vector3(offset, offset, 0f)),
+                        4f);
                     await MovementHelper.MoveTransformAsync(e.transform,
                         startPos + new Vector3(offset, 0f, 0f), 4f);
                     await MovementHelper.MoveTransformAsync(e.transform,
@@ -131,9 +151,13 @@ public class MovementBehaviours : SerializedScriptableObject
                 while (IsEnemyValid(e))
                 {
                     await MovementHelper.MoveTransformAsync(e.transform,
-                        startPos + new Vector3(0f, 0f, -offset), 4f);
+                        startPos + 
+                        (e.CurrentCamType == CamType.Orthographic ? new Vector3(0f, 0f, -offset) : new Vector3(0f, -offset, 0f)),
+                        4f);
                     await MovementHelper.MoveTransformAsync(e.transform,
-                        startPos + new Vector3(-offset, 0f, -offset), 4f);
+                        startPos + 
+                        (e.CurrentCamType == CamType.Orthographic ? new Vector3(-offset, 0f, -offset) : new Vector3(-offset, -offset, 0f)),
+                        4f);
                     await MovementHelper.MoveTransformAsync(e.transform,
                         startPos + new Vector3(-offset, 0f, 0f), 4f);
                     await MovementHelper.MoveTransformAsync(e.transform,

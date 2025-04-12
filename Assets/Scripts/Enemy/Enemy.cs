@@ -16,12 +16,14 @@ public abstract class Enemy : MonoBehaviour
     protected ProjectileSpawnCombinations ProjectileCombinations;
     protected MovementBehaviours MovementBehaviours;
     protected EnemySpawnCombinations.Mob EnemyDetails;
+    
     private SoulsView _soulsView;
     
     protected const float InitialDuration = 1f;
     private const float DamagedCooldown = 3f;
     private const float AllImmunityDuration = 5f;
     
+    public CamType CurrentCamType { get; protected set; }
     public bool IsDamagedRecently = false;
     public bool IsImmune = true;
     
@@ -59,6 +61,7 @@ public abstract class Enemy : MonoBehaviour
         if (health <= 0)
         {
             //TODO: or some effect
+            //TODO: return the soul count from abstract method?
             _soulsView.IncreaseSoulCount(EnemyDetails.EnemyType switch
             {
                 EnemyType.Mini => 10,

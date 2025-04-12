@@ -13,21 +13,20 @@ public class Mid : Enemy
     private Vector3 _afterSpawnPosition;
     private ProjectileSpawnCombinations.CombinedData _selectedCombination;
     private Func<Enemy, UniTask> _selectedMovementAction;
-    private CamType _currentCamType;
 
     private void Start()
     {
         CameraAnimationPlayer.Instance.CameraChanged += OnCameraChanged;
-        _currentCamType = CameraAnimationPlayer.Instance.CamType;
+        CurrentCamType = CameraAnimationPlayer.Instance.CamType;
         AI();
     }
 
     private void OnCameraChanged(CamType camType)
     {
-        if (_currentCamType == camType)
+        if (CurrentCamType == camType)
             return;
         
-        _currentCamType = camType;
+        CurrentCamType = camType;
 
         if (camType == CamType.Side)
         {
@@ -68,7 +67,7 @@ public class Mid : Enemy
     {
         // Lerp to the position in the data
         await UniTask.SwitchToMainThread();
-        if (_currentCamType == CamType.Side)
+        if (CurrentCamType == CamType.Side)
             await MovementHelper.MoveTransformAsyncUnscaled(transform,
                 new Vector3(0f, 
                     transform.position.y + EnemyDetails.AfterSpawnPosition.x,
@@ -108,7 +107,7 @@ public class Mid : Enemy
             {
                 var projectileDetails = spawnedData.Projectiles[j];
                 Projectile projectile = Instantiate(projectilePrefab[rng], transform.position + _selectedCombination.offsetSpawnPosition, Quaternion.identity);
-                projectile.SetStats(_currentCamType == CamType.Orthographic 
+                projectile.SetStats(CurrentCamType == CamType.Orthographic 
                         ? projectileDetails.Direction 
                         : new Vector3(0f, projectileDetails.Direction.x, projectileDetails.Direction.z)
                     , projectileDetails.Speed, projectileBaseDamage,
