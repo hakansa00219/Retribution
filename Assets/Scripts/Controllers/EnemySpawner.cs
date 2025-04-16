@@ -4,6 +4,7 @@ using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class EnemySpawner : SerializedMonoBehaviour
 {
@@ -13,7 +14,7 @@ public class EnemySpawner : SerializedMonoBehaviour
     
     [SerializeField] private SoulsView soulsView;
     private List<GameObject> _spawnedEnemies = new List<GameObject>();
-    private EnemySpawnCombinations _combinations;
+    [SerializeField] private EnemySpawnCombinations combinations;
 
     [SerializeField] private bool skipGameplay;
     public event Action<int> TurnChanged;
@@ -21,7 +22,7 @@ public class EnemySpawner : SerializedMonoBehaviour
     
     private void Awake()
     {
-        _combinations = Resources.Load<EnemySpawnCombinations>("Enemy Spawn Combinations");
+        // _combinations = Resources.Load<EnemySpawnCombinations>("Enemy Spawn Combinations");
     }
 
     private void OnEnable()
@@ -51,7 +52,7 @@ public class EnemySpawner : SerializedMonoBehaviour
             return;
         } 
         
-        foreach (var level in _combinations.Levels)
+        foreach (var level in combinations.Levels)
         {
             for (var index = 0; index < level.Turns.Length; index++)
             {

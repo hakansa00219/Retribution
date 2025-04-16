@@ -3016,6 +3016,7 @@ MonoBehaviour:
       Data: 
   enemyInitSpawnPosition: {x: 0, y: 2, z: 15}
   soulsView: {fileID: 440086972}
+  combinations: {fileID: 11400000, guid: b36701806b9153944aa8e22f01f19981, type: 2}
   skipGameplay: 0
 --- !u!1 &1742657168
 GameObject:

@@ -30,7 +30,7 @@ public static class MovementHelper
         transform.position = targetPosition;
     }
     
-    public static async UniTask MoveCircleTransformAsync(Transform transform, float speed)
+    public static async UniTask MoveCircleTransformAsync(Transform transform, CamType camType, float speed)
     {
         if (transform == null)
             return;
@@ -50,7 +50,7 @@ public static class MovementHelper
             float x = Mathf.Cos(angle) * radius;
             float y = Mathf.Sin(angle) * radius;
             
-            transform.position = initialPosition + new Vector3(x, 0f, y);
+            transform.position = initialPosition + (camType is CamType.Orthographic ? new Vector3(x, 0f, y) : new Vector3(0f, x, y));
             
             await UniTask.Yield();
         }

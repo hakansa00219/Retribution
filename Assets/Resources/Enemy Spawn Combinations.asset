@@ -91,7 +91,7 @@ MonoBehaviour:
     - Enemies:
       - EnemyType: 2
         AfterSpawnPosition: {x: 0, y: 2, z: 3}
-        MovementBehaviour: SquareMovement
+        MovementBehaviour: LeftRightMovement
         ProjectileSpawnCombination: Big_Bombs
       CamType: 0
     - Enemies:
@@ -161,17 +161,17 @@ MonoBehaviour:
     - Enemies:
       - EnemyType: 2
         AfterSpawnPosition: {x: 0, y: 2, z: 4}
-        MovementBehaviour: SquareMovement
+        MovementBehaviour: LeftRightMovement
         ProjectileSpawnCombination: Big_Bombs
       - EnemyType: 2
         AfterSpawnPosition: {x: 0, y: 2, z: 4}
-        MovementBehaviour: SquareMovement
+        MovementBehaviour: LeftRightMovement
         ProjectileSpawnCombination: Big_Bombs
       CamType: 1
     - Enemies:
       - EnemyType: 2
         AfterSpawnPosition: {x: 0, y: 2, z: 4}
-        MovementBehaviour: SquareMovement
+        MovementBehaviour: LeftRightMovement
         ProjectileSpawnCombination: Big_Bombs
       - EnemyType: 1
         AfterSpawnPosition: {x: 0, y: 2, z: 2}
